@@ -1,0 +1,35 @@
+.status-code-legend {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 500px;
+    border-radius: 8px 8px 8px 8px;
+    background-color: antiquewhite;
+}
+
+.status-code-legend h2 {
+    margin-top: 0;
+}
+
+.legend-received {
+    color: blue;
+    width: 70px;
+    height: 10px;
+    display: inline-block;
+    
+}
+
+.legend-processed {
+    color: green;
+    width: 70px;
+    height: 10px;
+    display: inline-block;
+    
+}
+
+.legend-not-processable {
+    color: red;
+    width: 80px;
+    height: 10px;
+    display: inline-block;
+    
+}

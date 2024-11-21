@@ -1,0 +1,354 @@
+.view-claim-reconciliation {
+    padding: 20px;
+    background-color: #f9fafb;
+    font-family: 'Inter', sans-serif;
+    color: #343a40;
+}
+
+.view-claim-reconciliation h2 {
+    font-size: 1.75rem;
+    color: #1e3a8a;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.view-claim-reconciliation h3 {
+    font-size: 1.5rem;
+    color: #343a40;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.search-criteria {
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.search-criteria .date-range-selector {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.search-criteria .date-range-selector input,
+.search-criteria .date-range-selector button {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    font-size: 0.875rem;
+    color: #495057;
+}
+
+.search-criteria .date-range-selector input:focus,
+.search-criteria .date-range-selector button:focus {
+    outline: none;
+    border-color: #1e3a8a;
+    box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.2);
+}
+
+.search-criteria .date-range-selector button {
+    background-color: #1e3a8a;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-criteria .date-range-selector button:hover {
+    background-color: #274bdb;
+}
+
+.container.mt-5 {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Table Styles */
+.file-table,
+.claim-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    margin-bottom: 30px;
+}
+
+.file-table th,
+.file-table td,
+.claim-table th,
+.claim-table td {
+    padding: 15px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+}
+
+.file-table th,
+.claim-table th {
+    background-color: #f9fafb;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.file-table tr:hover,
+.claim-table tr:hover {
+    background-color: #f1f5f9;
+}
+
+.file-table .status,
+.claim-table .status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.file-table .status.received,
+.claim-table .status.received {
+    background-color: #e5f4e3;
+    color: #027a48;
+}
+
+.file-table .status.processed,
+.claim-table .status.processed {
+    background-color: #f3e8ff;
+    color: #6b21a8;
+}
+
+.file-table .status.rejected,
+.claim-table .status.rejected {
+    background-color: #fde2e4;
+    color: #e31b23;
+}
+
+/* ViewClaimReconciliation.css */
+
+.date-range-selector {
+    display: flex;
+    flex-wrap: nowrap;
+    /* Ensures the elements stay in one line */
+    align-items: center;
+    /* Vertically centers the items */
+    gap: 20px;
+}
+
+.date-range-selector .form-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+    /* Adjust based on your layout */
+}
+
+.date-range-selector .form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.date-range-selector .button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.create-report,
+.clear-fields {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .date-range-selector {
+        flex-direction: column;
+        align-items: flex-start;
+        /* Align items to the start for small screens */
+    }
+}
+
+/* Adjusting for sidebar states */
+.sidebar-open .view-claim-reconciliation .date-range-selector {
+    margin-left: 45px;
+    /* Adjust based on your sidebar width */
+}
+
+.sidebar-closed .view-claim-reconciliation .date-range-selector {
+    margin-left: 40px;
+    /* Adjust based on your sidebar width */
+}
+
+.status-button {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 4px;
+}
+
+.status-button.received {
+    background-color: #4caf50;
+    /* Green */
+}
+
+.status-button.processed {
+    background-color: #2196f3;
+    /* Blue */
+}
+
+.view-claim-reconciliation {
+    padding: 20px;
+    background-color: #f7f7f7;
+}
+
+h2 {
+    color: #3b5998;
+    margin-bottom: 20px;
+}
+
+.filter-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.filter-input {
+    width: 100%;
+    padding: 8px 35px 8px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.filter-icon {
+    position: absolute;
+    right: 10px;
+    color: #888;
+}
+
+.file-table,
+.claim-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.file-table th,
+.claim-table th {
+    background-color: #3b5998;
+    color: white;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.file-table td,
+.claim-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.status-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+}
+
+.status-button.receieved {
+    background-color: #28a745;
+}
+
+.status-button.processed {
+    background-color: #17a2b8;
+}
+.status-button.rejected {
+    background-color: #e11313;
+}
+
+
+
+
+
+
+.file-table th input.filter-input,
+.claim-table th input.filter-input {
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Style for the filter inputs */
+.filter-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 6px;
+    font-size: 0.85em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Style for table headers */
+.file-table th,
+.claim-table th {
+    position: relative;
+    text-align: left;
+    padding: 10px;
+    background-color: #3b5998;
+    cursor: pointer;
+    font-size: 15px;
+    color: #ecf0ed;
+}
+
+/* Style for sort icons */
+.file-table th i,
+.claim-table th i {
+    margin-left: 8px;
+    font-size: 0.9em;
+    color: #eff3f5;
+}
+
+/* Add hover effect on headers */
+.file-table th:hover,
+.claim-table th:hover {
+    background-color: #5d73f5;
+}
+
+/* Styling the sorted column differently */
+.file-table th.sorted,
+.claim-table th.sorted {
+    background-color: #0fa2e6;
+}
+
+/* Style for status buttons */
+.status-button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 0.85em;
+    cursor: pointer;
+}
+
+.status-button.active {
+    background-color: #28a745;
+}
+
+.status-button.inactive {
+    background-color: #dc3545;
+}
+
+.claim-data-formgroup {
+    flex-direction: row !important;
+    margin-bottom: 0px !important;
+    align-items: center !important;
+    gap: 10px !important;
+}

@@ -1,0 +1,185 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.min-width-1200{
+  min-width: 1200px;
+}
+.min-width-600{
+  min-width: 600px;
+}
+.min-width-100-percent{
+  min-width: 100%;
+}
+.width-100{
+  width: 100%;
+}
+.width-50{
+  width: 50px 
+
+}
+.font-weight-bold{
+  font-weight: bold !important;
+}
+
+.color-black{
+  color: black !important;
+}
+.scroller {
+  /* scrollbar-width: none; */
+  /* width: 12px !important; */
+  overflow-y:hidden;
+  
+
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 10px !important;
+  height: 2px !important;
+}
+
+/* Track */
+.custom-scroll::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgb(180, 176, 176); 
+  border-radius: 50%;
+}
+
+/* Handle */
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: rgb(180, 176, 176); 
+  border-radius: 50px;
+}
+
+
+
+
+.fontsize-12{
+  font-size: 12px !important;
+}
+
+.margin-left-40{
+  margin-left: 40px!important;
+}
+
+.action-button{
+  width: 210px !important;
+  height: 32px !important;
+  margin-top: 4px !important;
+  border-radius: 3px !important;
+  text-align: left !important;
+}
+
+.overflow-x-auto{
+  overflow-x: auto !important;
+}
+.width-max-content{
+  width:max-content !important
+
+}
+.
+/* colors */
+
+.color-red {
+  color: #d63c3c
+}
+
+.color-blue {
+  color: #3c5dd6
+}
+
+.color-sky {
+  color: #3cd6d3
+}
+
+.color-orange {
+  color: #e08a29
+}
+.color-green {
+  color: #28a745;
+}
+
+.color-rose {
+  color: #d63c8c
+}
+
+.button-red{
+  background-color:#d63c3c;
+}
+
+.button-blue{
+  background-color:#3c5dd6 ;
+}
+.button-sky{
+  background-color:#3cd6d3
+}
+.button-orange{
+  background-color: #e08a29
+}
+.button-rose{
+  background-color: #d63c8c
+}
+.button-green{
+  background-color: #28a745;
+}
+
+
+
+
+
+
+
+/* html tag font sizes */
+html {
+  font-size: 16px;
+}
+@media only screen and (max-width: 992px) {
+  html {
+    font-size: 14px !important;
+  }
+}
+@media only screen and (max-width: 576px) {
+  html {
+    font-size: 12px !important;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  html {
+    font-size: 10px !important;
+  }
+}

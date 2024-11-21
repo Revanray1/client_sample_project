@@ -1,0 +1,72 @@
+.App {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.search-criteria {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.date-selection {
+    display: flex;
+    align-items: center;
+}
+
+.date-selection label, .date-selection input, .date-selection select, .date-selection button {
+    margin-right: 10px;
+}
+
+.status-code-legend {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 300px;
+}
+
+.status-code-legend h2 {
+    margin-top: 0;
+}
+
+.legend-received {
+    background-color: yellow;
+    width: 20px;
+    height: 10px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.legend-processed {
+    background-color: green;
+    width: 20px;
+    height: 10px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.legend-not-processable {
+    background-color: red;
+    width: 20px;
+    height: 10px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.file-table {
+    margin-top: 20px;
+}
+
+.file-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.file-table th, .file-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.file-table th {
+    background-color: #f4f4f4;
+}

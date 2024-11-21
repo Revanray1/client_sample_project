@@ -1,0 +1,290 @@
+Container for the entire component .claim-detail {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+.claim-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Tabs styling */
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 10px 20px;
+    margin-right: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.tab.active {
+    color: #007bff;
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+}
+
+/* Content styling */
+.tab-content {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Claim summary styling */
+.claim-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.claim-summary div {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.claim-summary span {
+    display: block;
+    font-size: 14px;
+}
+
+/* Line item styling */
+.line-item {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.line-header {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.line-details {
+    font-size: 14px;
+    color: #666;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+/* EDI view styling */
+.section {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.section-header {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.section-details {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Export button styling */
+.export-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.export-button:hover {
+    background-color: #0056b3;
+}
+
+.claim-detail {
+    font-family: 'Roboto', sans-serif;
+    padding: 20px;
+    background-color: #f4f6f9;
+}
+
+.claim-header {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 5px 5px 0 0;
+    background-color: #fff;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tab.active {
+    background-color: #007bff;
+    color: #fff;
+    border-bottom: 1px solid #007bff;
+}
+
+.tab-content {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.claim-summary div,
+.line-item div,
+.section-details span {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.line-item {
+    margin-top: 20px;
+}
+
+.line-header,
+.line-details {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.section-header {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.export-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.export-button:hover {
+    background-color: #007bff;
+}
+
+
+
+/* styles */
+
+.width-30 {
+    min-width: 30%;
+}
+
+.width-10 {
+    min-width: 10%;
+}
+.width-20 {
+    min-width: 20%;
+}
+
+.claimdetails-value {
+    font-size: 12px !important;
+    font-weight: bold !important;
+    color: #53749c !important;
+}
+
+.claim-detail-innerheader {
+    width: 98%;
+    margin-left: auto;
+    justify-content: space-between;
+    display: flex;
+    padding: .25rem !important;
+    background: rgb(221, 221, 221);
+    cursor: pointer;
+    /* Indicates that this is clickable */
+}
+
+.claimdetails-summary-header {
+    display: flex !important;
+    justify-content: space-between;
+    padding: .25rem !important;
+    background: rgb(221, 221, 221);
+    margin-top: 20px;
+}
+
+.claim-detail-summary-outerdiv {
+    display: flex;
+    margin-left: 21px;
+    gap: 20px;
+}
+
+.claim-detail-child-div {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 21px;
+    grid-area: 20px;
+}
+
+.claim-detail-child-div-grid {
+    display: grid;
+    text-align: left;
+}
+
+/* Hide the default marker
+summary::-webkit-details-marker {
+  display: none;
+} */
+
+/* Custom styles for the summary element
+summary {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+} */
