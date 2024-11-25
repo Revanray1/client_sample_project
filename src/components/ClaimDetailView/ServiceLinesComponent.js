@@ -30,11 +30,11 @@ const ServiceLines = ({data,index}) => {
                             <div className='claimdetails-value'>SERVICE DATE</div>
                             </div>
                             <div className='text-start'>
-                                <div className="width-max-content">{data?.insurancePayment!== "" ? data?.insurancePayment : "-"}</div>
+                                <div className="width-max-content">{data?.insurancePayment!== "" ? Number(data?.insurancePayment).toFixed(2) : "-"}</div>
                                 <div className='claimdetails-value width-max-content'>INSURANCE PAYMENT</div>
                             </div>
                             <div className='text-start'>
-                                <div className="width-max-content">{data?.patientPayment!== "" ? data?.patientPayment : "-"}</div>
+                                <div className="width-max-content">{data?.patientPayment!== "" ? Number(data?.patientPayment).toFixed(2): "-"}</div>
                                 <div className='claimdetails-value width-max-content'>PATIENT PAYMENT</div>
                             </div>
                             <div className='text-start'>
@@ -46,7 +46,7 @@ const ServiceLines = ({data,index}) => {
                                 <div className='claimdetails-value width-max-content'>QUANTITY</div>
                             </div>
                             <div className='text-start'>
-                                <div className="width-max-content">{data?.totalCharge!== "" ? data?.totalCharge : "-"}</div>
+                                <div className="width-max-content">{data?.totalCharge!== "" ? Number(data?.totalCharge).toFixed(2) : "-"}</div>
                                 <div className='claimdetails-value width-max-content'>TOTAL CHARGE</div>
                             </div>
                             

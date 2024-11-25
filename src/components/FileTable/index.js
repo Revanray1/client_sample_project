@@ -267,7 +267,7 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
                                             <td className='text-center'>
                                                 <button
                                                     className={`status-button ${file.status.toLowerCase()}`}
-                                                    onClick={() => onStatusChange(index)}
+                                                    //onClick={() => onStatusChange(index)}
                                                 >
                                                     {file.status}
                                                 </button>
