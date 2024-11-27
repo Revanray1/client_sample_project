@@ -10,6 +10,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faFileAlt, faUsers, faChartLine, faCog, faSignOutAlt, faListAlt, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import './Dashboard.css';
 import { useAuth } from '../Auth/AuthProvider.js';
+import ChartViewPage from '../UiComponents/ChartViewPage.js';
+import MainContent from './MainContent.js';
 
 const Dashboard = () => {
   const { logout } = useAuth();
@@ -95,28 +97,73 @@ const Dashboard = () => {
     );
 };
 
-const MainContent = () => (
-    <div className="main-content">
-        <div className="cards">
-            <Card title="Total Files Received" value="230" />
-            <Card title="Total Claims" value="540" />
-            <Card title="Total 999  Generated" value="503" />
-            <Card title="Total 277CA  Generated" value="503" />
-            <Card title="Forwarded to Medicare" value="110" />
+// const MainContent = () => (
+//     <div className="main-content">
+//         <div className="cards">
+//             <Card title="Total Files Received" value="230" />
+//             <Card title="Total Claims" value="540" />
+//             <Card title="Total 999  Generated" value="503" />
+//             <Card title="Total 277CA  Generated" value="503" />
+//             <Card title="Forwarded to Medicare" value="110" />
            
-        </div>
-        {/* <div className="charts">
-            <Chart title="Sales Over Time" />
-            <Chart title="User Growth" />
-            <Chart title="Revenue vs Expenses" />
-            <Chart title="Customer Satisfaction" />
-        </div>
-        <div className="tables">
-            <DataTable title="Recent Orders" data={dummyOrderData} />
-            <DataTable title="Top Products" data={dummyProductData} />
-        </div> */}
-    </div>
-);
+//         </div>
+//         <div>
+//             <ChartViewPage />
+//         </div>
+
+//         <div style={{ alignItems:"center",maxWidth:"1000px"}}>
+//            <div style={{ display:"flex",height:"300px",width:"100%",backgroundColor:"grey",margin:"10px"  }}>
+//             <div style={{width:"100%"}}>1</div>
+//             <div style={{width:"100%"}}>2</div>
+//             <div style={{width:"100%"}}>3</div>
+//             <div style={{width:"100%"}}>4</div>
+//             <div style={{width:"100%"}}>5</div>
+//             <div style={{width:"100%"}}>6</div>
+//             <div style={{width:"100%"}}>7</div>
+//             <div style={{width:"100%"}}>8</div>
+//             <div style={{width:"100%"}}>9</div>
+//             <div style={{width:"100%"}}>10</div>
+//             <div style={{width:"100%"}}>11</div>
+//             <div style={{width:"100%"}}>12</div>
+//             <div style={{width:"100%"}}>13</div>
+//             <div style={{width:"100%"}}>14</div>
+//             <div style={{width:"100%"}}>15</div>
+//             <div style={{width:"100%"}}>16</div>
+//            </div>
+//            <div style={{ display:"flex",height:"300px",width:"100%",backgroundColor:"grey",margin:"10px"}}>
+//             <div style={{width:"100%"}}>17</div>
+//             <div style={{width:"100%"}}>18</div>
+//             <div style={{width:"100%"}}>18</div>
+//             <div style={{width:"100%"}}>19</div>
+//             <div style={{width:"100%"}}>20</div>
+//             <div style={{width:"100%"}}>21</div>
+//             <div style={{width:"100%"}}>22</div>
+//             <div style={{width:"100%"}}>23</div>
+//             <div style={{width:"100%"}}>24</div>
+//             <div style={{width:"100%"}}>25</div>
+//             <div style={{width:"100%"}}>26</div>
+//             <div style={{width:"100%"}}>27</div>
+//             <div style={{width:"100%"}}>28</div>
+//             <div style={{width:"100%"}}>29</div>
+//             <div style={{width:"100%"}}>30</div>
+//             <div style={{width:"100%"}}>31</div>
+//             <div style={{width:"100%"}}>32</div>
+//            </div>
+//         </div>
+
+
+//         {/* <div className="charts">
+//             <Chart title="Sales Over Time" />
+//             <Chart title="User Growth" />
+//             <Chart title="Revenue vs Expenses" />
+//             <Chart title="Customer Satisfaction" />
+//         </div>
+//         <div className="tables">
+//             <DataTable title="Recent Orders" data={dummyOrderData} />
+//             <DataTable title="Top Products" data={dummyProductData} />
+//         </div> */}
+//     </div>
+// );
 
 const Card = ({ title, value }) => (
     <div className="card">

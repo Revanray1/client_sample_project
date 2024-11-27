@@ -243,3 +243,59 @@
 }
 
 /* Optionally, you can target other elements as needed */
+
+.dashboard-header {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    
+}
+
+.dashboard-box{
+    width : calc(20% - 6.4px);
+    height: 110px;
+}
+.dashboard-text-div{
+    width: 90%;
+    height: 100%;
+}
+.dashboard-inner-content{
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+.dashboard-box-text{
+    font-size: 17px !important;
+}
+.dashboard-box-one{
+    width: 7%;
+    height: 100%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+@media only screen and (max-width: 768px ) {
+
+    .dashboard-box{
+        width : calc(50% - 4px);
+    }
+    
+  }
+
+  @media only screen and (max-width: 480px ) {
+
+    .dashboard-box{
+        width : 100%;
+    }
+
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .dashboard-box-text{
+        font-size: 15px !important;
+    }
+}
