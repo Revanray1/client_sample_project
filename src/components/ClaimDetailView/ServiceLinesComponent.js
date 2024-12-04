@@ -46,7 +46,11 @@ const ServiceLines = ({data,index}) => {
                                 <div className='claimdetails-value width-max-content'>QUANTITY</div>
                             </div>
                             <div className='text-start'>
-                                <div className="width-max-content">{data?.totalCharge!== "" ? Number(data?.totalCharge).toFixed(2) : "-"}</div>
+                                <div className="width-max-content">{(data?.icdCode &&  data?.icdCode!== "") ? data?.icdCode : "-"}</div>
+                                <div className='claimdetails-value width-max-content'>ICD</div>
+                            </div>
+                            <div className='text-start'>
+                                <div className="width-max-content">{( data?.totalCharge!== "") ? Number(data?.totalCharge).toFixed(2) : "-"}</div>
                                 <div className='claimdetails-value width-max-content'>TOTAL CHARGE</div>
                             </div>
                             
