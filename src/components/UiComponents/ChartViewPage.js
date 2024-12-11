@@ -26,19 +26,10 @@ const ChartViewPage = ({data}) => {
 
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", height: "100vh" }}>
+    <div style={{ display: "flex", flexWrap: "wrap" }}>
       <div style={{ width: "800px", height: "200px", padding: "10px" }}>
        {userData &&  <BarChart chartData={userData} />}
       </div>
-      {/* 
-      <div style={{width:"400px",height:"200px",padding:"10px"}}>
-      <BarChart  chartData={userData2}/>
-      </div>
-
-      <div style={{width:"400px",height:"200px",padding:"10px"}}>
-      <BarChart  chartData={userData2} isPlugin={true}/>
-      </div> */}
-
     </div>
   )
 }

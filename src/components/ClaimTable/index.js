@@ -96,9 +96,9 @@ const ClaimTable = ({ onStatusChange, claimData, claimloader, currentFileName })
                             <div className='text-left'>
                                 File name : {currentFileName}
                             </div>
-                            <div className='overflow-auto '>
-                                <div className='container d-flex shadow p-2 mb-4 bg-white rounded  justify-content-evenly  min-width-1200'>
-                                    <div className='d-flex align-items-center fontsize-12 custom-scroll'>
+                            <div className='overflow-auto'>
+                                <div className='container d-flex shadow p-2 mb-4 bg-white rounded  justify-content-evenly min-width-100-percent'>
+                                    <div className='d-flex align-items-center fontsize-12'>
                                         Status Code:
                                     </div>
                                     <div>
@@ -130,9 +130,9 @@ const ClaimTable = ({ onStatusChange, claimData, claimloader, currentFileName })
                                     </div>
                                 </div>
 
-                                <table className="claim-table table-sm min-width-1200" >
+                                <table className="claim-table table-sm min-width-1000" >
                                     <thead>
-                                        <tr >
+                                        <tr>
                                         <th onClick={() => requestSort('claimId')}>
                                                 Claim Id
                                                 <i className={getSortIcon('claimId')}></i>
@@ -234,7 +234,7 @@ const ClaimTable = ({ onStatusChange, claimData, claimloader, currentFileName })
                                                 <td className='text-center'>{claim.patientName}</td>
                                                 <td className='text-center'>{claim.billingProviderName}</td>
                                                 <td className='text-center'>{claim.payerName}</td>
-                                                <td className='text-center'>{claim.claimAmount}</td>
+                                                <td className='text-center'> {Number(claim.claimAmount).toFixed(2)}</td>
                                                 <td className='text-center'>
                                                     <button
                                                         className={`status-button ${claim.claimStatus.toLowerCase()}`}

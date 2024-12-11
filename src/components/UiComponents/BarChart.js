@@ -4,17 +4,7 @@ import {Chart as chartjs} from 'chart.js/auto'
 
 const BarChart = ({chartData,isPlugin}) => {
     const barPattern={
-        id:'barPattern',
-        beforeDatasetsDraw:(chart, args, pluginOptions) =>{
-            const {ctx, chartArea:{ top, bottom, left, height},scales: { x, y }} = chart;
-        ctx.save();
-        const width = chart.getDatasetMeta(0).data[0].width; 
-
-        chart.getDatasetMeta(0).data.forEach((data,index)=>{
-        ctx.fillRect(x.getPixelForValue(index) - width/2, top,width, height -0.5)
-          
-        })
-        }
+        id:'barPattern'
     }
   return (
     <div>

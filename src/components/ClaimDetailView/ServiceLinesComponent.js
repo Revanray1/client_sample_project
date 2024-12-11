@@ -29,28 +29,33 @@ const ServiceLines = ({data,index}) => {
                             <div>{(data?.dateofService ? (data?.dateofService.split(" "))[0] : "-")}</div>
                             <div className='claimdetails-value'>SERVICE DATE</div>
                             </div>
-                            <div className='text-start'>
-                                <div className="width-max-content">{data?.insurancePayment!== "" ? Number(data?.insurancePayment).toFixed(2) : "-"}</div>
+
+                            
+
+                            {/* <div className='text-start'>
+                                <div className="width-max-content">{data?.insurancePayment!== "" ? data?.insurancePayment : "-"}</div>
                                 <div className='claimdetails-value width-max-content'>INSURANCE PAYMENT</div>
                             </div>
                             <div className='text-start'>
-                                <div className="width-max-content">{data?.patientPayment!== "" ? Number(data?.patientPayment).toFixed(2): "-"}</div>
+                                <div className="width-max-content">{data?.patientPayment!== "" ? data?.patientPayment : "-"}</div>
                                 <div className='claimdetails-value width-max-content'>PATIENT PAYMENT</div>
-                            </div>
+                            </div> */}
                             <div className='text-start'>
                                 <div className="width-max-content">{data?.procedureCode!== "" ? data?.procedureCode : "-"}</div>
                                 <div className='claimdetails-value width-max-content'>PROCEDURE CODE</div>
                             </div>
-                            <div className='text-start'>
+                            {/* <div className='text-start'>
                                 <div className="width-max-content">{data?.quantity!== "" ? data?.quantity : "-"}</div>
                                 <div className='claimdetails-value width-max-content'>QUANTITY</div>
-                            </div>
+                            </div> */}
+
                             <div className='text-start'>
                                 <div className="width-max-content">{(data?.icdCode &&  data?.icdCode!== "") ? data?.icdCode : "-"}</div>
                                 <div className='claimdetails-value width-max-content'>ICD</div>
                             </div>
+                            
                             <div className='text-start'>
-                                <div className="width-max-content">{( data?.totalCharge!== "") ? Number(data?.totalCharge).toFixed(2) : "-"}</div>
+                                <div className="width-max-content">{data?.totalCharge!== "" ? Number(data?.totalCharge).toFixed(2) : "-"}</div>
                                 <div className='claimdetails-value width-max-content'>TOTAL CHARGE</div>
                             </div>
                             

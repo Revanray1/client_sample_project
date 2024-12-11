@@ -1,14 +1,12 @@
 import React, { createContext, useContext, useState } from 'react';
-// import {  useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(!!sessionStorage.getItem('authToken'));
 
-    // const navigate = useNavigate();
     const login = (token) => {
-        const expiryTime = new Date().getTime() + 1 * 60 * 1000; // 30 minutes
+        const expiryTime = new Date().getTime() + 30 * 60 * 1000; // 30 minutes
         sessionStorage.setItem('authToken', token);
         sessionStorage.setItem('expiryTime', expiryTime);
         setIsAuthenticated(true);
@@ -26,7 +24,6 @@ export const AuthProvider = ({ children }) => {
 
         if (token && expiryTime > new Date().getTime()) {
             setIsAuthenticated(true);
-            return true; // Return true if authenticated, else false
         } else {
             console.log('Authentication failed');
             setIsAuthenticated(false);

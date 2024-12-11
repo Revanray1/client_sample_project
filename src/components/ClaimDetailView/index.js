@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import './ClaimDetailView.css';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -68,7 +67,7 @@ const ClaimDetailView = () => {
                                                 <div>{data?.claimNumber === "" ? "-" : data?.claimNumber}</div>
                                                 <div className='claimdetails-value'>CLAIM NUMBER</div>
                                             </div>
-                                            <div  className='text-start'>
+                                            {/* <div  className='text-start'>
                                             <div>{data?.patControlNumber === "" ? "-" : data?.patControlNumber}</div>
                                                 <div className='claimdetails-value'>PAT CONTROL NUMBER</div>
                                             </div>
@@ -79,7 +78,7 @@ const ClaimDetailView = () => {
                                             <div  className='text-start'>
                                             <div>{data?.receiver === "" ? "-" : data?.receiver}</div>
                                                 <div className='claimdetails-value'>RECEIVER</div>
-                                            </div>
+                                            </div> */}
                                             <div  className='text-start'>
                                             <div>{data?.claimAmount === "" ? "-" :  Number(data?.claimAmount).toFixed(2)}</div>
                                                 <div className='claimdetails-value'>CHARGE AMOUNT</div>
@@ -110,22 +109,34 @@ const ClaimDetailView = () => {
 
                                     <div className='mt-3 overflow-auto'>
                                         <div className='claim-detail-child-div'>
-                                            <div className="width-30 claim-detail-child-div-grid p-1" >
+                                            {/* <div className="width-30 claim-detail-child-div-grid p-1" >
                                                 <div>{data?.billingProviderName === "" ? "-" : data?.billingProviderName}</div>
                                                 <div className='claimdetails-value'>BUSINESS NAME</div>
-                                            </div>
+                                            </div> */}
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
                                                 <div>{data?.billingProviderNPI === "" ? "-" : data?.billingProviderNPI}</div>
-                                                <div className='claimdetails-value'>NPI</div>
+                                                <div className='claimdetails-value'>Billing Provider NPI</div>
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
+                                                <div>{data?.renderingProviderNPI === "" ? "-" : data?.renderingProviderNPI}</div>
+                                                <div className='claimdetails-value'>Rendering Provider NPI</div>
+                                            </div>
+                                            {/* <div className="width-30 claim-detail-child-div-grid p-1" >
+                                                <div>{data?.billingProviderName === "" ? "-" : data?.billingProviderName}</div>
+                                                <div className='claimdetails-value'> Billing Provider Name</div>
+                                            </div> */}
+                                            <div className="width-30 claim-detail-child-div-grid p-1" >
                                             <div>{data?.billingProviderAddress1 === "" ? "-" : data?.billingProviderAddress1}</div>
-                                                <div className='claimdetails-value'>ADDRESS</div>
+                                                <div className='claimdetails-value'>Billing Provider Address</div>
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
                                                 <div>{data?.renderingProviderName === "" ? "-" : data?.renderingProviderName}</div>
-                                                <div className='claimdetails-value'> RENDERING PROVIDER</div>
+                                                <div className='claimdetails-value'> Rendering Provider Name</div>
                                             </div>
+                                            {/* <div className="width-30 claim-detail-child-div-grid p-1" >
+                                            <div>{data?.renderingProvAddress === "" ? "-" : data?.renderingProvAddress}</div>
+                                                <div className='claimdetails-value'>Rendering Provider ADDRESS</div>
+                                            </div> */}
 
                                         </div>
                                     </div>
@@ -144,13 +155,18 @@ const ClaimDetailView = () => {
 
                                     <div className='mt-3 overflow-auto'>
                                         <div className='claim-detail-child-div'>
-                                            <div className="width-30 claim-detail-child-div-grid p-1" >
+                                            {/* <div className="width-30 claim-detail-child-div-grid p-1" >
                                                 <div>{data?.payerId === "" ? "-" : data?.payerId}</div>
                                                 <div className='claimdetails-value'>PAYER ID</div>
-                                            </div>
+                                            </div> */}
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
                                                 <div>{data?.payerName === "" ? "-" : data?.payerName}</div>
                                                 <div className='claimdetails-value'>PAYER NAME</div>
+                                            </div>
+
+                                            <div className="width-30 claim-detail-child-div-grid p-1" >
+                                                <div>{data?.payerAddress === "" ? "-" : data?.payerAddress}</div>
+                                                <div className='claimdetails-value'>Payer Address</div>
                                             </div>
                                          </div>
                                     </div>
@@ -176,24 +192,29 @@ const ClaimDetailView = () => {
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
                                                 <div>{data?.memberId === "" ? "-" : data?.memberId}</div>
-                                                <div className='claimdetails-value'>MEMBER ID</div>
+                                                <div className='claimdetails-value'>POLICY NUMBER</div>
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
                                             <div>{data?.patientGender === "" ? "-" : data?.patientGender}</div>
                                                 <div className='claimdetails-value'> GENDER</div>
                                             </div>
-                                            <div className="width-30 claim-detail-child-div-grid p-1" >
+                                           <div className="width-30 claim-detail-child-div-grid p-1" >
                                             <div>{ data?.patientDOB === "" ? "-" : (data?.patientDOB?.split(" "))[0]}</div>
                                                 <div className='claimdetails-value'> DATE OF BIRTH</div>
                                             </div>
-                                            <div className="width-30 claim-detail-child-div-grid p-1" >
+                                              {/*<div className="width-30 claim-detail-child-div-grid p-1" >
                                                 <div>{data?.billingProviderAddress1 === "" ? "-" : data?.billingProviderAddress1}</div>
                                                 <div className='claimdetails-value'>ADDRESS</div>
-                                            </div>
+                                            </div> */}
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
                                                 <div>{data?.subscriber === "" ? "-" : data?.subscriber}</div>
                                                 <div className='claimdetails-value'>SUBSCRIBER</div>
                                             </div>
+                                            <div className="width-30 claim-detail-child-div-grid p-1" >
+                                                <div>{data?.subscriberAddress === "" ? "-" : data?.subscriberAddress}</div>
+                                                <div className='claimdetails-value'>Subscriber Address</div>
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </details>

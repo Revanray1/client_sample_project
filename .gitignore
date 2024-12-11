@@ -1,5 +1,6 @@
 # Node.js modules
 node_modules/
+srcBackup
 
 # Logs
 logs

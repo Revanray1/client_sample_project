@@ -37,8 +37,8 @@
   }
 }
 
-.min-width-1200{
-  min-width: 1200px;
+.min-width-1000{
+  min-width: 1000px;
 }
 .min-width-600{
   min-width: 600px;
@@ -111,10 +111,21 @@
   width:max-content !important
 
 }
+
+
 .sidebar-list-height {
   min-height: 80vh 
  
 }
+
+
+
+
+
+
+
+
+
 .
 /* colors */
 

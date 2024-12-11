@@ -66,6 +66,8 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
         (file.charges || '').toString().includes(filters.charges) &&
         (file.status || '').toLowerCase().includes(filters.status.toLowerCase())
     );
+    console.log("filteredFiles", filteredFiles)
+    
     const requestSort = (key) => {
         const newOrder = sortOrder === "asc" ? "desc" : "asc";
         setSortOrder(newOrder);

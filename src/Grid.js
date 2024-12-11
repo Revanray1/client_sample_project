@@ -45,7 +45,7 @@ const Grid = () => {
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
   return (
-    <div className="container mt-5">
+    <div className="container w-100 mt-5">
       <h3>User List</h3>
       <table className="table">
         <thead>

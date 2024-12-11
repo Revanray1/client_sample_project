@@ -5,6 +5,7 @@ import ChartViewPage from '../UiComponents/ChartViewPage.js';
 
 const MainContent = () => {
     const [dashboardCount, setDashboardCount] = useState(null)
+    const [userName, setUserName] = useState(null)
 
 
 
@@ -12,22 +13,42 @@ const MainContent = () => {
         try {
             const response = await fetchDashboardCountDetail(1)
             const updatedData = Object.entries(response[0]).map(([key, value], index) => {
-                return { title: key, value: value }
+                return { title: getKeyValue(key), value: value }
             })
             setDashboardCount(updatedData);
         } catch (err) {
             console.error('Error fetching claim data:', err)
         }
     }
+   
+    const getKeyValue = (key) => {
+        if (key === 'totalFilesReceived') {
+          return 'Total Files Received';
+        } else if (key === 'totalClaims') {
+          return 'Total Claims';
+        } else if (key === 'total999Generated') {
+          return 'Total 999 Generated';
+        } else if (key === 'total277CAGenerated') {
+            return 'Total 277CA Generated';
+        }  else if (key === 'forwarded') {
+            return 'Forwarded';
+        } else {
+          return 'Unknown';
+        }
+      };
 
     useEffect(() => {
         getDashboardCountDetail()
     }, [])
 
-    return (<>
+   
+        console.log(dashboardCount)
+
+    return  (<>
         {dashboardCount &&
             <>
-                <div className="dashboard-header gap-2">
+              <h5 className='font-weight-bold'>Welcome To Clearing House - Dashboard</h5>
+                <div className="dashboard-header gap-2 mt-4">
                     {dashboardCount.map((data, index) => (<>
                         <div class="dashboard-box d-flex shadow rounded " style={{ backgroundColor: `` }}>
                             <div className='dashboard-box-one' style={{ backgroundColor: `rgb(${colors[index]})` }}></div>
@@ -40,7 +61,7 @@ const MainContent = () => {
                 </div>
                 <div className='' style={{ height: "300px" }}>
                     <div className='d-flex'>
-                        <div className='d-flex gap-1 '>
+                        <div className='d-flex gap-1 mt-4 '>
                             <ChartViewPage data={dashboardCount} />
                             <div>
                                 <div className='' style={{ marginLeft: "10%", marginTop: "50%", display: "flex", textAlign: "left", justifyContent: "center", alignItems: "center", minWidth: "300px" }}>

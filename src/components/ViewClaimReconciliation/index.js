@@ -25,6 +25,7 @@ const DateRangeSelector = ({ onCreateReport, onClearFields }) => {
     };
 
     const handleUploadClaim = async () => {
+        
         try {
             const response = await fetch('http://dev.chapi.healthiva.com/Customer/UploadClaims?CustomerId=1', {
                 method: 'POST',
@@ -84,8 +85,7 @@ const ViewClaimReconciliation = () => {
             fileSize: 1144,
             numClaims: 4,
             charges: '$168.99',
-            status: 'Received',
-            isVisible: true
+            status: 'Received'
         },
         {
             fileName: 'R16754_06192024.txt',
@@ -93,8 +93,7 @@ const ViewClaimReconciliation = () => {
             fileSize: 1344,
             numClaims: 173,
             charges: '$38896.99',
-            status: 'Received',
-            isVisible: true
+            status: 'Received'
         },
         {
             fileName: 'R13894_06192024.txt',
@@ -102,9 +101,7 @@ const ViewClaimReconciliation = () => {
             fileSize: 1156,
             numClaims: 2,
             charges: '$768.99',
-            status: 'Received',
-            isVisible: true
-
+            status: 'Received'
         }
     ]);
 
@@ -118,7 +115,7 @@ const ViewClaimReconciliation = () => {
                 fileSize: file.fileSize || '',
                 numClaims: file.claimCount || '', // Adjust if necessary
                 charges: file.charges || '', // Adjust if necessary
-                status: file.fileStatus || '',
+                status: file.fileStatus || ''
             }));
             setFiles(formattedData);
             setFileLoader(false);
@@ -202,8 +199,9 @@ const ViewClaimReconciliation = () => {
 
     };
 
+
     return (
-        <div className="view-claim-reconciliation " >
+        <div className="view-claim-reconciliation w-100" >
             <h5 className='font-weight-bold'>Clearing House - Customer View Claim File Reconciliation</h5>
             <div className="search-criteria">
                 <DateRangeSelector onCreateReport={handleCreateReport} onClearFields={handleClearFields} />
