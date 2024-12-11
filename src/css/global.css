@@ -111,6 +111,10 @@
   width:max-content !important
 
 }
+.sidebar-list-height {
+  min-height: 80vh 
+ 
+}
 .
 /* colors */
 

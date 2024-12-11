@@ -1,0 +1,5 @@
+.sidebar-footer{
+    /* display: flex; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -8,7 +8,9 @@ import Grid from './Grid';
 import Login from './components/Login';
 import ForgetPassword from './components/ForgetPassword';
 import SignUp from './components/SignUp';
+import NotFound from '../src/components/ComponentNotFound'
 import { useAuth } from './components/Auth/AuthProvider';
+import SideLayout from '../src/components/SidenavComponent'
 
 function ProtectedRoute({ element }) {
   const { isAuthenticated } = useAuth();
@@ -34,11 +36,11 @@ function App() {
             {/* Protected Routes */}
 
             {/* Route for Dashboard */}
-            <Route path="/dashboard/*" element={<ProtectedRoute element={<Dashboard />} />} />
+            <Route path="/dashboard/*" element={<ProtectedRoute element={<SideLayout><Dashboard /></SideLayout>} />} />
 
             {/* Additional Routes */}
-            <Route path="/user-list" element={<ProtectedRoute element={<Grid />} />} />
-            <Route path="/view-claim-reconciliation" element={<ProtectedRoute element={<ViewClaimReconciliation />} />} />
+            <Route path="/user-list" element={<ProtectedRoute element={<SideLayout><Grid /></SideLayout>} />} />
+            <Route path="/view-claim-reconciliation" element={<ProtectedRoute element={<SideLayout><ViewClaimReconciliation /></SideLayout>} />} />
             <Route path="/claim-details" element={<ProtectedRoute element={<ClaimDetailView />} />} />
             <Route path="/forgot-password" element={<ProtectedRoute element={<ForgetPassword />} />} />
             <Route path="/signup" element={<ProtectedRoute element={<SignUp />} />} />
@@ -46,9 +48,16 @@ function App() {
 
             {/* Default Route: Redirect to Login */}
             <Route path="/" element={<Navigate to="/login" />} />
+
+            {/* Fallback Route for 404 - Not Found */}
+            <Route path="*" element={<NotFound />} />
+
+
           </Routes>
         </div>
       </Router>
+      <div id="copyright" align="center">&copy; 2008 - 2023 Healthiva</div>
+
       </div>
   );
 }

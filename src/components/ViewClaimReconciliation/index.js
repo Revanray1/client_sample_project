@@ -84,7 +84,8 @@ const ViewClaimReconciliation = () => {
             fileSize: 1144,
             numClaims: 4,
             charges: '$168.99',
-            status: 'Received'
+            status: 'Received',
+            isVisible: true
         },
         {
             fileName: 'R16754_06192024.txt',
@@ -92,7 +93,8 @@ const ViewClaimReconciliation = () => {
             fileSize: 1344,
             numClaims: 173,
             charges: '$38896.99',
-            status: 'Received'
+            status: 'Received',
+            isVisible: true
         },
         {
             fileName: 'R13894_06192024.txt',
@@ -100,7 +102,9 @@ const ViewClaimReconciliation = () => {
             fileSize: 1156,
             numClaims: 2,
             charges: '$768.99',
-            status: 'Received'
+            status: 'Received',
+            isVisible: true
+
         }
     ]);
 
@@ -114,7 +118,7 @@ const ViewClaimReconciliation = () => {
                 fileSize: file.fileSize || '',
                 numClaims: file.claimCount || '', // Adjust if necessary
                 charges: file.charges || '', // Adjust if necessary
-                status: file.fileStatus || ''
+                status: file.fileStatus || '',
             }));
             setFiles(formattedData);
             setFileLoader(false);
@@ -186,7 +190,8 @@ const ViewClaimReconciliation = () => {
                 fileSize: file.fileSize || '',
                 numClaims: file.claimCount || '', // Adjust if necessary
                 charges: file.charges || '', // Adjust if necessary
-                status: file.fileStatus || ''
+                status: file.fileStatus || '',
+                isVisible: true
             }));
             setFiles(formattedData);
             setFileLoader(false);

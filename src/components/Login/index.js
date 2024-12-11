@@ -1,29 +1,56 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css'; // Ensure this path is correct
-import { useAuth } from '../Auth/AuthProvider.js'; //''
+import { useAuth } from '../Auth/AuthProvider.js'; 
+import { userLogin , adminLogin } from '../../api/loginApi/index.js'
 
 const Login = () => {
+
   const [email, setEmail] = useState('admin@example.com');
   const [password, setPassword] = useState('password123');
-  const [customerId, setCustomerId] = useState('admin@example.com'); // Add customerId state
+  const [customerId, setCustomerId] = useState(''); // Add customerId state
   const [showPassword, setShowPassword] = useState(false);
   const [activeTab, setActiveTab] = useState('customer');
   const navigate = useNavigate();
+  const [error, setError] = useState(null)
+
 
   const { login } = useAuth();
 
-  const handleSubmit = (e) => {
+  console.log("BASEURL",process.env.REACT_APP_BASE_URL )
+  const handleSubmit = async (e) => {
     login()
     e.preventDefault();
+    if (activeTab === 'admin') {      
+      try {
+        const response = await adminLogin(email,password, "0", "0")
+              if(response.status === 200) {
+                localStorage.setItem('userName',response.data.replace(/"/g, ''));
 
-      if (email === 'admin@example.com' && password === 'password123') {
-        login('adminToken');//adminToken
-        navigate('/dashboard');
-      } else {
-        alert('Invalid admin email or password');
-      }
-    
+                        login('adminToken');
+                        navigate('/dashboard');
+              } else {
+                setError('Invalid admin email or password');
+              }
+           } catch (err) {
+             console.error('Error fetching claim data:', err)
+          }  
+    } else {
+
+      try {
+        const response = await userLogin(email,password, customerId, "1")
+              if(response.status === 200) {
+                localStorage.setItem('userName',response.data);
+
+                login('customerToken'); // customerToken
+                navigate('/customer-dashboard'); // Adjust the path as needed
+              } else {
+                setError('Invalid admin email or password');
+              }
+           } catch (err) {
+              console.error('Error fetching claim data:', err)
+          } 
+    }
   };
 
   const toggleShowPassword = () => {
@@ -41,7 +68,7 @@ const Login = () => {
   };
 
   return (
-<div className="login-container">
+    <div className="login-container">
       <div className="overlay"></div> {/* Added overlay for better text visibility */}
       <div className="login-form">
         <div className="tabs">
@@ -99,6 +126,9 @@ const Login = () => {
           </div>
           <button type="submit" className="btn btn-primary">Login</button>
         </form>
+        <div>
+          {error && <p className="text-danger" >{error}</p>}
+        </div>
         <div className="signup-container">
           <p>Don't have an account? <a onClick={handleSignUpClick} style={{ cursor: 'pointer' }}>Sign Up</a></p>
         </div>

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { MultiSelect } from "react-multi-select-component";
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome
 import '../ViewClaimReconciliation/ViewClaimReconciliation.css'; // Ensure your CSS includes styles for sorting icons
 import Dropdown from 'react-bootstrap/Dropdown';
 import Loader from '../UiComponents/Loader';
 import './FileTable.css'
-import  {formatDateToMMDDYYYY} from '../../utils/commonFunctions';
+import { formatDateToMMDDYYYY } from '../../utils/commonFunctions';
+import { parsePath } from 'react-router-dom';
 
 
 const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClaimData }) => {
@@ -13,7 +15,6 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
     const [actionStatus, setActionStatus] = useState("Actions")
     const [currentFileData, setCurrentFileData] = useState(files) // 25 files
     const [currentPage, setCurrentPage] = useState(1)
-
 
     const [filters, setFilters] = useState({
         fileName: '',
@@ -118,6 +119,69 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
         }
     }
 
+    const [tableHeader, setTableHeader] = useState(null)
+
+    useEffect(() => {
+        const data = [
+
+            {
+                label: "File Id",
+                value: "File Id",
+                parameters: "fileId",
+                headerType: 'text',
+                isVisible: true
+            },
+
+            {
+                label: "File Name",
+                value: "File Name",
+                parameters: "fileName",
+                headerType: 'text',
+                isVisible: true
+
+            },
+
+            {
+                label: "Date",
+                value: "Date",
+                parameters: "fileDate",
+                headerType: 'text',
+                isVisible: true
+
+            },
+
+            {
+                label: "Claims",
+                value: "Claims",
+                parameters: "numClaims",
+                headerType: 'text',
+                isVisible: true
+
+            },
+
+            {
+                label: "Status",
+                value: "Status",
+                parameters: "status",
+                headerType: 'dropdown',
+                isVisible: true
+
+            },
+            {
+                label: "Action",
+                value: "Action",
+                parameters: "action",
+                headerType: 'none',
+                isVisible: true
+
+            }
+        ]
+
+        setTableHeader(data);
+    }, [])
+
+
+        const [selected, setSelected] = useState([]);
     return (
         <>
             {fileLoader ?
@@ -126,6 +190,9 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
                 </> :
                 <> {files.length > 0 ?
                     <>
+                        <div className=''>
+
+                                </div>  
                         <div className='overflow-auto  custom-scroll'>
                             <div className='container d-flex shadow p-2 mb-4 bg-white rounded  justify-content-evenly  min-width-1200'>
                                 <div className='d-flex align-items-center fontsize-12 custom-scroll '>
@@ -160,13 +227,66 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
                                 </div>
                             </div>
                         </div>
+                        <div className="file-table table-sm min-width-1200" style={{float:"right"}}>
+                                            <div style={{width:"300px",float:"right"}}>
+                                            <MultiSelect
+                                                options={tableHeader}
+                                                value={selected}
+                                                onChange={setSelected}
+                                                labelledBy="yes"
+                                                shouldToggleOnHover = "false"
+                                            /></div>
+                                </div>
 
-
-                        <div className='overflow-auto'>
+                        <div className=''>
                             <table className="file-table table-sm min-width-1200" >
                                 <thead>
                                     <tr >
-                                    <th onClick={() => requestSort('fileId')}>
+                                        {tableHeader && tableHeader.map(data => {
+                                            if (data.isVisible) {
+                                                if (data.headerType === "text") {
+                                                    return (
+                                                        <th onClick={() => requestSort(data.parameters)}>
+                                                            {data.label}
+                                                            <i className={getSortIcon(data.parameters)}></i>
+                                                            <input
+                                                                type={data.type}
+                                                                placeholder="Filter"
+                                                                value={filters[data.parameters]}
+                                                                onChange={(e) => setFilters({ ...filters, [data.parameters]: e.target.value })}
+                                                                className="filter-input"
+                                                            />
+                                                        </th>
+                                                    )
+                                                } else if (data.headerType === "dropdown") {
+                                                    return (<th>
+                                                        Status
+                                                        <Dropdown >
+                                                            <Dropdown.Toggle variant="light" id="dropdown-basic" className='text-truncate action-button'>
+                                                                {actionStatus}
+                                                            </Dropdown.Toggle>
+
+                                                            <Dropdown.Menu>
+                                                                <Dropdown.Item href="#/action-1" onClick={() => { setActionStatus("Received") }}>Received</Dropdown.Item>
+                                                                <Dropdown.Item href="#/action-3" onClick={() => { setActionStatus("EDI999Generated") }}>EDI999Generated</Dropdown.Item>
+                                                                <Dropdown.Item href="#/action-4" onClick={() => { setActionStatus("EDI277Generated") }}>EDI277Generated</Dropdown.Item>
+                                                                <Dropdown.Item href="#/action-2" onClick={() => { setActionStatus("Forwarded") }}>Forwarded</Dropdown.Item>
+                                                                <Dropdown.Item href="#/action-2" onClick={() => { setActionStatus("Processed") }}>Processed</Dropdown.Item>
+
+                                                            </Dropdown.Menu>
+                                                        </Dropdown>
+                                                    </th>
+
+                                                    )
+                                                }else if(data.headerType == "none"){
+                                                  return ( <th >
+                                                            <div className='filetable-actionbutton'>Action</div>
+                                                        </th>)
+                                                }
+                                            }
+
+                                        })}
+                                        {/* <th onClick={() => requestSort('fileId')}>
                                             File Id
                                             <i className={getSortIcon('fileId')}></i>
                                             <input
@@ -176,8 +296,8 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
                                                 onChange={(e) => setFilters({ ...filters, fileId: e.target.value })}
                                                 className="filter-input"
                                             />
-                                        </th>
-                                        <th onClick={() => requestSort('fileName')}>
+                                        </th> */}
+                                        {/* <th onClick={() => requestSort('fileName')}>
                                             File Name
                                             <i className={getSortIcon('fileName')}></i>
                                             <input
@@ -198,7 +318,7 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
                                                 onChange={(e) => setFilters({ ...filters, fileDate: e.target.value })}
                                                 className="filter-input"
                                             />
-                                        </th>
+                                        </th> */}
                                         {/* <th onClick={() => requestSort('fileSize')}>
                             Size (KB)
                             <i className={getSortIcon('fileSize')}></i>
@@ -210,7 +330,7 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
                                 className="filter-input"
                             />
                         </th> */}
-                                        <th onClick={() => requestSort('numClaims')}>
+                                        {/* <th onClick={() => requestSort('numClaims')}>
                                             Claims
                                             <i className={getSortIcon('numClaims')}></i>
                                             <input
@@ -220,7 +340,7 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
                                                 onChange={(e) => setFilters({ ...filters, numClaims: e.target.value })}
                                                 className="filter-input"
                                             />
-                                        </th>
+                                        </th> */}
                                         {/* <th onClick={() => requestSort('charges')}>
                                                 Charges
                                                 <i className={getSortIcon('charges')}></i>
@@ -232,7 +352,7 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
                                                     className="filter-input"
                                                 />
                                             </th> */}
-                                        <th>
+                                        {/* <th>
                                             Status
                                             <Dropdown >
                                                 <Dropdown.Toggle variant="light" id="dropdown-basic" className='text-truncate action-button'>
@@ -248,36 +368,34 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
 
                                                 </Dropdown.Menu>
                                             </Dropdown>
-                                        </th>
-                                        <th >
-                                            <div className='filetable-actionbutton'>Action</div>
+                                        </th> */}
 
-                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {filteredFiles.map((file, index) => (
                                         <tr key={index}>
-                                            <td className='text-center'>{file.fileId}</td>
-                                            <td className='text-center'>{file.fileName}</td>
-                                            <td className='text-center'>{formatDateToMMDDYYYY(file.fileDate)}</td>
+                                           {file.isVisible &&  <td className='text-center'>{file.fileId}</td> }
+                                           {file.isVisible && <td className='text-center'>{file.fileName}</td>}
+                                            {file.isVisible &&  <td className='text-center'>{formatDateToMMDDYYYY(file.fileDate)}</td>}
                                             {/* <td>{file.fileSize}</td> */}
-                                            <td className='text-center'>{file.numClaims}</td>
+                                            {file.isVisible &&  <td className='text-center'>{file.numClaims}</td>}
                                             {/* <td>{file.charges}</td> */}
-                                            <td className='text-center'>
+                                            {file.isVisible &&  <td className='text-center'>
                                                 <button
                                                     className={`status-button ${file.status.toLowerCase()}`}
-                                                    //onClick={() => onStatusChange(index)}
+                                                //onClick={() => onStatusChange(index)}
                                                 >
                                                     {file.status}
                                                 </button>
-                                            </td>
-                                            <td className='text-center'>
+                                            </td>}
+                                            {file.isVisible &&  <td className='text-center'>
                                                 <button className="btn btn-primary btn-sm"
                                                     onClick={() => handleViewClaimData(file.fileName)}>
                                                     View
                                                 </button>
                                             </td>
+                                            }
                                         </tr>
                                     ))}
                                 </tbody>
