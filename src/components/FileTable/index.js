@@ -31,16 +31,12 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
         const data = files.slice(0, 1 * 10);
         setCurrentFileData(data)
     }, [files])
-    // console.log("currentFileData",currentFileData);
 
     const userData = JSON.parse(localStorage.getItem('userData'));
-    //console.log(userData.fromdate);    
     // const [fileStartDate, setFileStartDate] = useState('01-08-2024');
     // const [fileEndDate, setFileEndDate] = useState('10-08-2024');
     const [fileStartDate, setFileStartDate] = useState(userData?.fromdate);
     const [fileEndDate, setFileEndDate] = useState(userData?.todate);
-    // console.log(fileStartDate);
-    // console.log(fileEndDate);
 
     const sortedFiles = [...currentFileData].sort((a, b) => {
         if (sortConfig.key) {
@@ -66,7 +62,6 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
         (file.charges || '').toString().includes(filters.charges) &&
         (file.status || '').toLowerCase().includes(filters.status.toLowerCase())
     );
-    console.log("filteredFiles", filteredFiles)
     
     const requestSort = (key) => {
         const newOrder = sortOrder === "asc" ? "desc" : "asc";
@@ -182,8 +177,6 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
         setTableHeader(data);
     }, [])
 
-
-        const [selected, setSelected] = useState([]);
     return (
         <>
             {fileLoader ?
@@ -229,16 +222,6 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
                                 </div>
                             </div>
                         </div>
-                        <div className="file-table table-sm min-width-1200" style={{float:"right"}}>
-                                            <div style={{width:"300px",float:"right"}}>
-                                            <MultiSelect
-                                                options={tableHeader}
-                                                value={selected}
-                                                onChange={setSelected}
-                                                labelledBy="yes"
-                                                shouldToggleOnHover = "false"
-                                            /></div>
-                                </div>
 
                         <div className=''>
                             <table className="file-table table-sm min-width-1200" >

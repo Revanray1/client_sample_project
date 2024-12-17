@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, Route, Routes, useNavigate } from 'react-router-dom';
 import ClaimDetailView from '../ClaimDetailView';
 import ViewClaimReconciliation from '../ViewClaimReconciliation';
@@ -8,25 +8,23 @@ import Analytics from '../Analytics';
 import Settings from '../Settings';
 
 import './Dashboard.css';
-import { useAuth } from '../Auth/AuthProvider.js';
-import MainContent from './MainContent.js';
+import CustomerDashboard from './CustomerDashboard.js';
+import AdminDashboard from './AdminDashboard.js';
 import NotFound from '../ComponentNotFound/index.js';
 
 const Dashboard = () => {
+    const [userType, setUserType] = useState(null)
+    useEffect(() => {
+        const user = localStorage.getItem('userType');
+        if (user) {
+            setUserType(user)
+        }
+    }, [])
 
     return (
-            <div className="dashboard-content">
-                <Routes>
-                    <Route path="/" element={<MainContent />} />
-                    <Route path="/claim-details/:id" element={<ClaimDetailView />} />
-                    <Route path="/view-claim-reconciliation" element={<ViewClaimReconciliation />} />
-                    <Route path="/user-list" element={<Grid />} />
-                    <Route path="/reports" element={<Reports />} />
-                    <Route path="/analytics" element={<Analytics />} />
-                    <Route path="/settings" element={<Settings />} />
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
-            </div>
+        <div className="dashboard-content">
+            {userType === 'Customer' ? <CustomerDashboard /> : <AdminDashboard />}
+        </div>
     );
 };
 

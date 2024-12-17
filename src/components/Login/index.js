@@ -6,9 +6,9 @@ import { userLogin , adminLogin } from '../../api/loginApi/index.js'
 
 const Login = () => {
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [customerId, setCustomerId] = useState(''); // Add customerId state
+  const [email, setEmail] = useState('admin@example.com');
+  const [password, setPassword] = useState('password123@');
+  const [customerId, setCustomerId] = useState('1'); // Add customerId state
   const [showPassword, setShowPassword] = useState(false);
   const [activeTab, setActiveTab] = useState('customer');
   const navigate = useNavigate();
@@ -17,7 +17,6 @@ const Login = () => {
 
   const { login } = useAuth();
 
-  console.log("BASEURL",process.env.REACT_APP_BASE_URL )
   const handleSubmit = async (e) => {
     login()
     e.preventDefault();
@@ -26,6 +25,7 @@ const Login = () => {
         const response = await adminLogin(email,password, "0", "0")
               if(response.status === 200) {
                 localStorage.setItem('userName',response.data.replace(/"/g, ''));
+                localStorage.setItem('userType',"Admin");
 
                         login('adminToken');
                         navigate('/dashboard');
@@ -41,9 +41,10 @@ const Login = () => {
         const response = await userLogin(email,password, customerId, "1")
               if(response.status === 200) {
                 localStorage.setItem('userName',response.data);
+                localStorage.setItem('userType',"Customer");
 
                 login('customerToken'); // customerToken
-                navigate('/customer-dashboard'); // Adjust the path as needed
+                navigate('/dashboard'); // Adjust the path as needed
               } else {
                 setError('Invalid admin email or password');
               }

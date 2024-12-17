@@ -23,7 +23,7 @@ const ClaimTable = ({ onStatusChange, claimData, claimloader, currentFileName })
 
     });
     const handleEdit = (id) => {
-        navigate(`/dashboard/claim-details/${id}`);
+        navigate(`/view-claim-reconciliation/claim-details/${id}`);
     };
 
     const sortedClaims = [...currentFileData].sort((a, b) => {

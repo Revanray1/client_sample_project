@@ -111,10 +111,10 @@ Container for the entire component .claim-detail {
 }
 
 .section-details {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.6;
-}
+    max-height: 500px; /* Adjust the height as needed */
+    overflow-y: auto;  /* Enable vertical scrolling */
+  }
+  
 
 /* Export button styling */
 .export-button {

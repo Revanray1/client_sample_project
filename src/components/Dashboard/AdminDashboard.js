@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { fetchDashboardCountDetail } from '../../api/dashboardApi';
-import { colors } from '../../utils/color';
+import { fetchDashboardCountDetail } from '../../api/dashboardApi/index.js';
+import { colors } from '../../utils/color.js';
 import ChartViewPage from '../UiComponents/ChartViewPage.js';
 
-const MainContent = () => {
+const AdminDashboard = () => {
     const [dashboardCount, setDashboardCount] = useState(null)
     const [userName, setUserName] = useState(null)
+    const [userType, setUserType] = useState(null)
 
 
 
     const getDashboardCountDetail = async () => {
         try {
-            const response = await fetchDashboardCountDetail(1)
+            let response = await fetchDashboardCountDetail(1)
             const updatedData = Object.entries(response[0]).map(([key, value], index) => {
                 return { title: getKeyValue(key), value: value }
             })
@@ -20,34 +21,32 @@ const MainContent = () => {
             console.error('Error fetching claim data:', err)
         }
     }
-   
+
     const getKeyValue = (key) => {
         if (key === 'totalFilesReceived') {
-          return 'Total Files Received';
+            return 'Total Files Received';
         } else if (key === 'totalClaims') {
-          return 'Total Claims';
+            return 'Total Claims';
         } else if (key === 'total999Generated') {
-          return 'Total 999 Generated';
+            return 'Total 999 Generated';
         } else if (key === 'total277CAGenerated') {
             return 'Total 277CA Generated';
-        }  else if (key === 'forwarded') {
+        } else if (key === 'forwarded') {
             return 'Forwarded';
         } else {
-          return 'Unknown';
+            return 'Unknown';
         }
-      };
+    };
 
     useEffect(() => {
         getDashboardCountDetail()
     }, [])
 
-   
-        console.log(dashboardCount)
 
-    return  (<>
+    return (<>
         {dashboardCount &&
             <>
-              <h5 className='font-weight-bold'>Welcome To Clearing House - Dashboard</h5>
+                <h5 className='font-weight-bold'>Welcome To Clearing House - Dashboard</h5>
                 <div className="dashboard-header gap-2 mt-4">
                     {dashboardCount.map((data, index) => (<>
                         <div class="dashboard-box d-flex shadow rounded " style={{ backgroundColor: `` }}>
@@ -86,16 +85,16 @@ const MainContent = () => {
                                                 Approved by Clearing House (EDI 277)
                                             </span>
                                         </div>
-                                        <div>
+                                        {userType !== "Customer" && <div>
                                             <span className='fontsize-18 color-rose' >
                                                 Rejected by Clearing House (EDI 277)
                                             </span>
-                                        </div>
-                                        <div>
+                                        </div>}
+                                        {userType !== "Customer" && <div>
                                             <span className='fontsize-18 color-green'>
                                                 Recieved
                                             </span>
-                                        </div>
+                                        </div>}
                                     </div>
                                 </div>
                             </div>
@@ -108,4 +107,4 @@ const MainContent = () => {
     </>)
 }
 
-export default MainContent
+export default AdminDashboard
