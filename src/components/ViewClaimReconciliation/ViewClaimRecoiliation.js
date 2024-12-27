@@ -200,7 +200,7 @@ const ViewClaimReconciliation = () => {
             <div className="search-criteria">
                 <DateRangeSelector onCreateReport={handleCreateReport} onClearFields={handleClearFields} />
             </div>
-            <div className="view-claim-reconciliation shadow-sm p-3 mb-5 bg-white rounded">
+            <div className="view-claim-reconciliation shadow-sm p-3 mb-5 bg-white rounded min-width-1200">
 
                 <h5 className='font-weight-bold'>File List</h5>
 

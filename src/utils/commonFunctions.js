@@ -10,3 +10,9 @@ export const  formatDateToMMDDYYYY= (dateString)=> {
     // Return the formatted date as MMDDYYYY
     return `${month}-${day}-${year}`;
 }
+
+export const    formatDateToYYYYMMDD = (data) => {
+    let date = data.split(" ")[0]
+    let dateArray = date.split("/")
+    return `${dateArray[2]}-${dateArray[0]}-${dateArray[1]}`
+}

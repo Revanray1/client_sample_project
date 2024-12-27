@@ -23,6 +23,9 @@ const ClaimTable = ({ onStatusChange, claimData, claimloader, currentFileName })
 
     });
     const handleEdit = (id) => {
+        navigate(`/view-claim-reconciliation/claim-details-edit/${id}`);
+    };
+    const handleView = (id) => {
         navigate(`/view-claim-reconciliation/claim-details/${id}`);
     };
 
@@ -242,10 +245,14 @@ const ClaimTable = ({ onStatusChange, claimData, claimloader, currentFileName })
                                                         {claim.claimStatus}
                                                     </button>
                                                 </td>
-                                                <td className='text-center'>
-                                                    <button className="btn btn-primary btn-sm"
-                                                        onClick={() => handleEdit(claim.claimid)}>
+                                                <td className='text-center '>
+                                                    <button className="btn btn-primary btn-sm "
+                                                        onClick={() => handleView(claim.claimid)}>
                                                         View
+                                                    </button>
+                                                    <button className="btn btn-primary btn-sm "
+                                                        onClick={() => handleEdit(claim.claimid)}>
+                                                        Edit 
                                                     </button>
                                                     {/* className={`status-button ${file.status.toLowerCase()}`} */}
 

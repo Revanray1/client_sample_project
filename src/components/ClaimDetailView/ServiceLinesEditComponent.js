@@ -1,6 +1,7 @@
 import React from 'react'
+import { formatDateToYYYYMMDD } from '../../utils/commonFunctions'
 
-const ServiceLines = ({data,index}) => {
+const ServiceLines = ({data,index,handleInputChange}) => {
     return (
         <div>
             <div className='mt-3' >
@@ -17,34 +18,44 @@ const ServiceLines = ({data,index}) => {
                     <div className='mt-3'>
                         <div className='d-flex gap-3 overflow-x-auto custom-scroll'>
                             <div className='text-start'>
-                                <div className="width-max-content">{data?.claimId !== "" ? data?.claimId : "-"}</div>
+                                <div className="width-max-content">
+                                    <input disabled={false} type="text" name="claimId" value={(data?.claimId !== "" ? data?.claimId : "-")}  onChange={(e)=>handleInputChange(e,"SERVICE")} />
+                                </div>
                                 <div className='claimdetails-value width-max-content'>CLAIM ID [1]</div>
                             </div>
                             <div className='text-start'>
-                                <div className="width-max-content">{data?.claimNumber !== "" ? data?.claimNumber : "-"}</div>
+                                <div className="width-max-content">
+                                <input disabled={false} type="text" name="claimNumber" value={(data?.claimNumber !== "" ? data?.claimNumber : "-")}  onChange={(e)=>handleInputChange(e,"SERVICE")} />
+                                </div>
                                 <div className='claimdetails-value width-max-content'>CLAIM NUMBER</div>
                             </div>
                             <div className='text-start'>
-                            <div>{(data?.dateofService ? (data?.dateofService.split(" "))[0] : "-")}</div>
+                            <div>
+                            <input disabled={false} type="date" name="dateofService" value={(data?.dateofService !== "" ? formatDateToYYYYMMDD(data?.dateofService ): "-")}  onChange={(e)=>handleInputChange(e,"SERVICE")} />
+                            </div>
                             <div className='claimdetails-value'>SERVICE DATE [24 a]</div>
                             </div>
 
                             <div className='text-start'>
-                                <div className="width-max-content">{data?.procedureCode!== "" ? data?.procedureCode : "-"}</div>
+                                <div className="width-max-content">
+                            <input disabled={false} type="text" name="claimId" value={(data?.procedureCode !== "" ? data?.procedureCode : "-")}  onChange={(e)=>handleInputChange(e,"SERVICE")} />
+                            </div>
                                 <div className='claimdetails-value width-max-content'>PROCEDURE CODE</div>
                             </div>
 
                             <div className='text-start'>
-                                <div className="width-max-content">{(data?.icdCode &&  data?.icdCode!== "") ? data?.icdCode : "-"}</div>
+                                <div className="width-max-content">
+                            <input disabled={false} type="text" name="icdCode" value={(data?.icdCode !== "" ? data?.icdCode : "-")}  onChange={(e)=>handleInputChange(e,"SERVICE")} />
+                            </div>
                                 <div className='claimdetails-value width-max-content'>ICD</div>
                             </div>
                             
                             <div className='text-start'>
-                                <div className="width-max-content">{data?.totalCharge!== "" ? Number(data?.totalCharge).toFixed(2) : "-"}</div>
+                                <div className="width-max-content">
+                            <input disabled={false} type="text" name="totalCharge" value={(data?.totalCharge !== "" ? Number(data?.totalCharge).toFixed(2) : "-")}  onChange={(e)=>handleInputChange(e,"SERVICE")} />
+                            </div>
                                 <div className='claimdetails-value width-max-content'>TOTAL CHARGE [24 f]</div>
                             </div>
-                            
-                            
                         </div>
                     </div>
                 </details>

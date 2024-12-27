@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import './ClaimDetailView.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchCustomerClaimDetails, fetchServiceLinesDeatails } from '../../api/claimDetailsApi';
-import ServiceLines from './ServiceLinesComponent';
+import ServiceLinesEdit from './ServiceLinesEditComponent';
+ import {formatDateToYYYYMMDD} from '../../utils/commonFunctions'
 
-const ClaimDetailView = () => {
+
+const ClaimDetailEdit = () => {
     const [activeTab, setActiveTab] = useState('CLAIM');
-    const [data, setData] = useState([]);
+    const [claimData, setClaimData] = useState([]); 
+    const [isDisables, setDisabled] = useState(false);
     const [serviceLinesData, setServiceLinesData] = useState([]);
     const { id } = useParams();
     const [userType, setUserType] = useState(null);
@@ -51,9 +54,29 @@ const ClaimDetailView = () => {
     const getClaimDeatails = async () => {
         try {
             const response = await fetchCustomerClaimDetails(id)
-            setData(response[0]);
+            setClaimData(response[0]);
         } catch (err) {
             console.error('Error fetching claim data:', err)
+        }
+    }
+
+    const formatDate = (value) => {
+        const dateArray = value.split("-");
+        return `${dateArray[1]}/${dateArray[2]}/${dateArray[0]}`;
+    }
+
+    const handleInputChange = (event,tab) => {
+        const { name, value, type } = event.target;
+        const updatedValue = type === "date" ? formatDate(value) : value;
+        if(tab === "CLAIM"){
+        setClaimData({
+            ...claimData,
+            [name]: updatedValue
+        });
+        }else if(tab === "SERVICE"){
+           const  serviceData = serviceLinesData[0]
+           const  updatedServiceData = {...serviceData, [name]: updatedValue}
+           setServiceLinesData([updatedServiceData])
         }
     }
 
@@ -65,10 +88,12 @@ const ClaimDetailView = () => {
             console.error('Error fetching claim data:', err)
         }
     }
+
     useEffect(() => {
         getClaimDeatails(id)
         getServiceLinesDeatails(id)
-    }, [activeTab]);
+    }, [activeTab]); 
+
     useEffect(() => {
         const user = localStorage.getItem('userType');
         setUserType(user)
@@ -95,30 +120,43 @@ const ClaimDetailView = () => {
                                     <div className='mt-3 overflow-auto'>
                                         <div className='claim-detail-summary-outerdiv'>
                                             <div className='text-start'>
-                                                <div>{(data?.claimId !== "" ? data?.claimId : "-")}</div>
+                                                <div style={{ width: "50%" }}>
+                                                    <input disabled={isDisables} type="text" name="claimId" value={(claimData?.claimId !== "" ? claimData?.claimId : "-")} onChange={(e)=>handleInputChange(e,"CLAIM")} />
+                                                </div>
                                                 <div className='claimdetails-value'>CLAIM ID </div>
                                             </div>
                                             <div className='text-start'>
-                                                <div>{(data?.claimFile !== "" ? data?.claimFile : "-")}</div>
+                                                <div style={{ width: "50%" }}>
+                                                    <input disabled={isDisables} type="text" name="claimFile" value={(claimData?.claimFile !== "" ? claimData?.claimFile : "-")} onChange={(e)=>handleInputChange(e,"CLAIM")} />
+                                                </div>
                                                 <div className='claimdetails-value'>CLAIM FILE</div>
                                             </div>
                                             <div className='text-start'>
-                                                <div>{data?.claimNumber === "" ? "-" : data?.claimNumber}</div>
+                                                <div style={{ width: "50%" }}>
+                                                    <input disabled={isDisables} type="text" name="claimNumber" value={(claimData?.claimNumber !== "" ? claimData?.claimNumber : "-")} onChange={(e)=>handleInputChange(e,"CLAIM")} />
+                                                </div>
+
                                                 <div className='claimdetails-value'>CLAIM NUMBER</div>
                                             </div>
                                             <div className='text-start'>
-                                                <div>{data?.claimAmount === "" ? "-" : Number(data?.claimAmount).toFixed(2)}</div>
+                                                <div style={{ width: "50%" }}>
+                                                    <input disabled={isDisables} type="text" name="claimAmount" value={(claimData?.claimAmount !== "" ? claimData?.claimAmount : "-")} onChange={(e)=>handleInputChange(e,"CLAIM")} />
+
+                                                </div>
                                                 <div className='claimdetails-value'>CHARGE AMOUNT [28]</div>
                                             </div>
-                                            <div className='text-start'>
-                                                <div>{data?.placeOfService === "" ? "-" : data?.placeOfService}</div>
+                                            <div className='text-start' >
+                                                <div style={{ width: "50%" }}>
+                                                    <input disabled={isDisables} type="text" name="placeOfService" value={(claimData?.placeOfService !== "" ? claimData?.placeOfService : "-")} onChange={(e)=>handleInputChange(e,"CLAIM")} />
+                                                </div>
                                                 <div className='claimdetails-value'>PLACE OF SERVICE [24 b]</div>
                                             </div>
-                                            <div className='text-start'>
-                                                <div>{(data?.dateofService ? (data?.dateofService.split(" "))[0] : "-")}</div>
+                                            <div className='text-start' >
+                                                <div style={{ width: "50%" }}>
+                                                    <input disabled={isDisables} type="date" name="dateofService" value={(claimData?.dateofService !== "" ? formatDateToYYYYMMDD(claimData?.dateofService) : "-")} onChange={(e)=>handleInputChange(e,"CLAIM")} />
+                                                </div>
                                                 <div className='claimdetails-value'>SERVICE DATE [24 a]</div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </details>
@@ -137,19 +175,27 @@ const ClaimDetailView = () => {
                                     <div className='mt-3 overflow-auto'>
                                         <div className='claim-detail-child-div'>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
-                                                <div>{data?.billingProviderNPI === "" ? "-" : data?.billingProviderNPI}</div>
+                                                <div >
+                                                    <input style={{ width: "100%" }} disabled={isDisables} name="billingProviderNPI" type="text" value={(claimData?.billingProviderNPI !== "" ? claimData.billingProviderNPI : "-")} onChange={(e)=>handleInputChange(e,"CLAIM")} />
+                                                </div>
                                                 <div className='claimdetails-value'>Billing Provider NPI [33 a]</div>
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
-                                                <div>{data?.renderingProviderNPI === "" ? "-" : data?.renderingProviderNPI}</div>
+                                                <div>
+                                                    <input style={{ width: "100%" }} disabled={isDisables} type="text" name="renderingProviderNPI" value={(claimData?.renderingProviderNPI !== "" ? claimData.renderingProviderNPI : "-")} onChange={(e)=>handleInputChange(e,"CLAIM")} />
+                                                </div>
                                                 <div className='claimdetails-value'>Rendering Provider NPI [24 j]</div>
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
-                                                <div>{data?.billingProviderAddress1 === "" ? "-" : data?.billingProviderAddress1}</div>
+                                                <div>
+                                                    <input style={{ width: "100%" }} disabled={isDisables} type="text" name="billingProviderAddress1" value={(claimData?.billingProviderAddress1 !== "" ? claimData.billingProviderAddress1 : "-")} onChange={(e)=>handleInputChange(e,"CLAIM")} />
+                                                </div>
                                                 <div className='claimdetails-value'>Billing Provider Address [33]</div>
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
-                                                <div>{data?.renderingProviderName === "" ? "-" : data?.renderingProviderName}</div>
+                                                <div>
+                                                    <input style={{ width: "100%" }} disabled={isDisables} type="text" name="renderingProviderName" value={(claimData?.renderingProviderName !== "" ? claimData.renderingProviderName : "-")} onChange={(e)=>handleInputChange(e,"CLAIM")} />
+                                                </div>
                                                 <div className='claimdetails-value'> Rendering Provider Name [33]</div>
                                             </div>
                                         </div>
@@ -170,12 +216,16 @@ const ClaimDetailView = () => {
                                     <div className='mt-3 overflow-auto'>
                                         <div className='claim-detail-child-div'>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
-                                                <div>{data?.payerName === "" ? "-" : data?.payerName}</div>
+                                                <div>
+                                                    <input style={{ width: "100%" }} disabled={isDisables} type="text" name="payerName" value={(claimData?.payerName !== "" ? claimData.payerName : "-")} onChange={(e)=>handleInputChange(e,"CLAIM")} />
+                                                </div>
                                                 <div className='claimdetails-value'>PAYER NAME [1]</div>
                                             </div>
 
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
-                                                <div>{data?.payerAddress === "" ? "-" : data?.payerAddress}</div>
+                                                <div>
+                                                    <input style={{ width: "100%" }} disabled={isDisables} type="text" name="payerAddress" value={(claimData?.payerAddress !== "" ? claimData.payerAddress : "-")} onChange={(e)=>handleInputChange(e,"CLAIM")} />
+                                                </div>
                                                 <div className='claimdetails-value'>Payer Address</div>
                                             </div>
                                         </div>
@@ -197,27 +247,45 @@ const ClaimDetailView = () => {
                                     <div className='mt-3 overflow-auto'>
                                         <div className='claim-detail-child-div'>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
-                                                <div>{(data?.patientName === "") ? "-" : data.patientName}</div>
+                                                <div>
+                                                    <input style={{ width: "100%" }} disabled={isDisables} type="text" name="patientName" value={(claimData?.patientName !== "" ? claimData.patientName : "-")} onChange={(e)=>handleInputChange(e,"CLAIM")} />
+
+                                                </div>
                                                 <div className='claimdetails-value'>NAME  [2]</div>
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
-                                                <div>{data?.memberId === "" ? "-" : data?.memberId}</div>
+                                                <div>
+                                                    <input style={{ width: "100%" }} disabled={isDisables} type="text" name="memberId" value={(claimData?.memberId !== "" ? claimData.memberId : "-")} onChange={(e)=>handleInputChange(e,"CLAIM")} />
+
+                                                </div>
                                                 <div className='claimdetails-value'>POLICY NUMBER [1 a]</div>
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
-                                                <div>{data?.patientGender === "" ? "-" : data?.patientGender}</div>
+                                                <div>
+                                                    <input style={{ width: "100%" }} disabled={isDisables} type="text" name="patientGender" value={(claimData?.patientGender !== "" ? claimData.patientGender : "-")} onChange={(e)=>handleInputChange(e,"CLAIM")} />
+
+                                                </div>
                                                 <div className='claimdetails-value'> GENDER [3]</div>
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
-                                                <div>{data?.patientDOB === "" ? "-" : (data?.patientDOB?.split(" "))[0]}</div>
+                                                <div>
+                                                    <input style={{ width: "100%" }} disabled={isDisables} type="date" name="patientDOB" value={(claimData?.patientDOB !== "" ? formatDateToYYYYMMDD(claimData.patientDOB) : "-")} onChange={(e)=>handleInputChange(e,"CLAIM")} />
+
+                                                </div>
                                                 <div className='claimdetails-value'> DATE OF BIRTH [3]</div>
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
-                                                <div>{data?.subscriber === "" ? "-" : data?.subscriber}</div>
+                                                <div>
+                                                    <input style={{ width: "100%" }} disabled={isDisables} type="text" name="subscriber" value={(claimData?.subscriber !== "" ? claimData.subscriber : "-")} onChange={(e)=>handleInputChange(e,"CLAIM")} />
+
+                                                </div>
                                                 <div className='claimdetails-value'>SUBSCRIBER [4]</div>
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
-                                                <div>{data?.subscriberAddress === "" ? "-" : data?.subscriberAddress}</div>
+                                                <div>
+                                                    <input style={{ width: "100%" }} disabled={isDisables} type="text" name="subscriberAddress" value={(claimData?.subscriberAddress !== "" ? claimData.subscriberAddress : "-")} onChange={(e)=>handleInputChange(e,"CLAIM")} />
+
+                                                </div>
                                                 <div className='claimdetails-value'>Subscriber Address [7]</div>
                                             </div>
 
@@ -226,6 +294,9 @@ const ClaimDetailView = () => {
                                 </details>
                             </div>
                         </div>
+                        <button className="btn btn-primary mt-2" onClick={() => {" handleSaveClaim()"}}>
+                            SAVE
+                        </button>
                     </div>
                 </>);
             case 'SERVICE LINES':
@@ -240,9 +311,12 @@ const ClaimDetailView = () => {
 
 
                                 {serviceLinesData.map((data, index) => {
-                                    return (
-                                        <ServiceLines data={data} index={index} />
-                                    )
+                                    return (<>
+                                        <ServiceLinesEdit data={data} index={index} handleInputChange={handleInputChange}/>
+                                        <button className="btn btn-primary mt-2" onClick={() => {" handleSaveClaim()"}}>
+                                            SAVE
+                                        </button>
+                                    </>)
                                 })}</> : <> No Data Found</>}
                     </>);
             case 'EDI VIEW':
@@ -279,19 +353,19 @@ const ClaimDetailView = () => {
                 >
                     SERVICE LINES ({serviceLinesData.length})
                 </button>
-                {(userType && userType === 'Admin') && <button
+                {/* {(userType && userType === 'Admin') && <button
                     className={`tab ${activeTab === 'EDI VIEW' ? 'active' : ''}`}
                     onClick={() => setActiveTab('EDI VIEW')}
                 >
                     EDI VIEW
-                </button>}
+                </button>} */}
 
             </div>
             <div className="tab-content">
-                {(data && Object.keys(data).length !== 0) && renderTabContent()}
+                {(claimData && Object.keys(claimData).length !== 0) && renderTabContent()}
             </div>
         </div>
     );
 };
 
-export default ClaimDetailView;
+export default ClaimDetailEdit;
