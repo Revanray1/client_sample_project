@@ -1,54 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import './ClaimDetailView.css';
 import { useParams, useNavigate } from 'react-router-dom';
-import { fetchCustomerClaimDetails, fetchServiceLinesDeatails } from '../../api/claimDetailsApi';
+import { fetchCustomerClaimDetails, fetchServiceLinesDetails, fetchEdiDetails } from '../../api/claimDetailsApi';
 import ServiceLines from './ServiceLinesComponent';
 
 const ClaimDetailView = () => {
     const [activeTab, setActiveTab] = useState('CLAIM');
     const [data, setData] = useState([]);
     const [serviceLinesData, setServiceLinesData] = useState([]);
-    const { id } = useParams();
+    const { claimId, claimNumber } = useParams();
     const [userType, setUserType] = useState(null);
-    const ediData = `
-    ISA*00*          *00*          *ZZ*0022058        *ZZ*MMISODJFS      *240930*1740*^*00501*000005163*0*P*:~
-    GS*HC*0022058*005010X2A1005010X222A1005010X220X222A1005010X222A1005010X222A1*20240930*1740*000005163*X*005010X222A1~
-    ST*837*000005163*005010X222A1~
-    BHT*0019*00*000005163*20240930*1740*CH~
-    NM1*41*2*Test Practice*****46*0022058~
-    PER*IC*Test  Practice*TE*9876543210*FX*9876543210~
-    NM1*40*2*MMISODJFS*****46*MMISODJFS~
-    HL*1**20*1~
-    NM1*85*2*Test Practice*****XX*1234567890~
-    N3*Address1.~ 
-    N4*HENLEY*MO*650401234~
-    REF*EI*1111~
-    HL*2*1*22*0~
-    SBR*P*18*******ZZ~
-    NM1*IL*1*Mary*Test****MI*1236549870~
-    N3*testaddress~
-    N4*NEW ALBANY*OH*43054~
-    DMG*D8*19850202*M~
-    N3*P.O. Box 8730~
-    N4*DAYTON*OH*45401~
-    CLM*5163*249.00***81:B:1*Y*C*Y*Y~
-    REF*X4*1351~
-    HI*ABK:F11121~
-    NM1*82*1*Mike*Provider**MS**XX*1234567890~
-    PRV*PE*PXC*1234CA21~
-    NM1*77*2*Test Practice*****XX*9875632410~
-    N3*Test.~
-    N4*ANCHORAGE*AK*99501~
-    REF*LU*174001~
-    LX*1~
-    SV1*HC:G0482:SA*249.00*UN*1*11**1~
-    DTP*472*RD8*20240117-20240117~
-    REF*6R*679089~
-    SE*32*000005163~
-    GE*1*000005163~
-    IEA*1*000005163~
-    `;
-    const getClaimDeatails = async () => {
+    const [ediData, setEdiData] = useState([]);
+
+    const getClaimDetails = async (id) => {
         try {
             const response = await fetchCustomerClaimDetails(id)
             setData(response[0]);
@@ -57,24 +21,36 @@ const ClaimDetailView = () => {
         }
     }
 
-    const getServiceLinesDeatails = async () => {
+    const getServiceLinesDetails = async (id) => {
         try {
-            const response = await fetchServiceLinesDeatails(id)
+            const response = await fetchServiceLinesDetails(id)
             setServiceLinesData(response)
         } catch (err) {
             console.error('Error fetching claim data:', err)
         }
     }
+    const getEdiDetails = async (id) => {
+        try {
+            const response = await fetchEdiDetails(id)
+            if(response.ediContent !== ""){
+                const ediContent = response.ediContent.split('~').filter(line => line.trim()!== "");
+                setEdiData(ediContent);
+            }
+        } catch (err) {
+            console.error('Error fetching claim data:', err)
+        }
+    }
     useEffect(() => {
-        getClaimDeatails(id)
-        getServiceLinesDeatails(id)
-    }, [activeTab]);
+        getClaimDetails(claimId)
+        getServiceLinesDetails(claimId)
+        getEdiDetails(claimNumber)
+        
+    }, []);
     useEffect(() => {
         const user = localStorage.getItem('userType');
         setUserType(user)
-    }, [activeTab]);
+    }, []);
 
-    const ediLines = ediData.split('~').filter(line => line.trim() !== "");
     const renderTabContent = () => {
         switch (activeTab) {
             case 'CLAIM':
@@ -243,18 +219,22 @@ const ClaimDetailView = () => {
                                     return (
                                         <ServiceLines data={data} index={index} />
                                     )
-                                })}</> : <> No Data Found</>}
-                    </>);
+                                })}
+                                </> : <> No Data Found</>}
+                            </>);
             case 'EDI VIEW':
                 return (
-
                     <div className="section ">
-                        <h3 className="section-header">EDI VIEW CONTENT</h3>
-                        <div className="section-details custom-scroll text-start">
-                            {ediLines.map((line, index) => (
-                                <p key={index}>{line}</p>
-                            ))}
-                        </div>
+                        {ediData.length > 0 ?
+                            <>
+                                <h3 className="section-header">EDI VIEW CONTENT</h3>
+                                <div className="section-details custom-scroll text-start">
+
+                                    {ediData.map((line, index) => (
+                                        <p key={index}>{line}</p>
+                                    ))}
+                                </div>
+                            </> : <h3 className="section-header">No data Found</h3>}
                     </div>
                 );
             default:
