@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './ViewClaimReconciliation.css';
 import { useNavigate } from 'react-router-dom';
 import FileTable from '../FileTable';
 import ClaimTable from '../ClaimTable';
 import { fetchCustomerFiles } from '../../api/fileListApi';
 import { fetchCustomerFileClaimList } from '../../api/claimListApi';
+    import './ViewClaimReconciliation.css';
+
 
 
 

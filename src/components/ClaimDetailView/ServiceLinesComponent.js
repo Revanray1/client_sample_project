@@ -18,7 +18,7 @@ const ServiceLines = ({data,index}) => {
                         <div className='d-flex gap-3 overflow-x-auto custom-scroll'>
                             <div className='text-start'>
                                 <div className="width-max-content">{data?.claimId !== "" ? data?.claimId : "-"}</div>
-                                <div className='claimdetails-value width-max-content'>CLAIM ID [1]</div>
+                                <div className='claimdetails-value width-max-content'>CLAIM ID <span className='color-filenumber'>[1]</span></div>
                             </div>
                             <div className='text-start'>
                                 <div className="width-max-content">{data?.claimNumber !== "" ? data?.claimNumber : "-"}</div>
@@ -26,7 +26,7 @@ const ServiceLines = ({data,index}) => {
                             </div>
                             <div className='text-start'>
                             <div>{(data?.dateofService ? (data?.dateofService.split(" "))[0] : "-")}</div>
-                            <div className='claimdetails-value'>SERVICE DATE [24 a]</div>
+                            <div className='claimdetails-value'>SERVICE DATE <span className='color-filenumber'>[24 a]</span></div>
                             </div>
 
                             <div className='text-start'>
@@ -41,7 +41,7 @@ const ServiceLines = ({data,index}) => {
                             
                             <div className='text-start'>
                                 <div className="width-max-content">{data?.totalCharge!== "" ? Number(data?.totalCharge).toFixed(2) : "-"}</div>
-                                <div className='claimdetails-value width-max-content'>TOTAL CHARGE [24 f]</div>
+                                <div className='claimdetails-value width-max-content'>TOTAL CHARGE <span className='color-filenumber'>[24 f]</span></div>
                             </div>
                             
                             

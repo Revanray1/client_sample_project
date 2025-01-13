@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
-import "./Grid.css";
+// import "./Grid.css";
 
 const Grid = () => {
   const [data, setData] = useState([
@@ -50,10 +50,10 @@ const Grid = () => {
       <table className="table">
         <thead>
           <tr>
-            <th>ID</th>
+            <th>USER ID</th>
+            <th>User Name</th>
             <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
+            <th>CustomerLogin</th>
             <th>Actions</th>
           </tr>
         </thead>

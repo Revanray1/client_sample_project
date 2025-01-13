@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ClaimDetailView.css';
 import { useParams, useNavigate } from 'react-router-dom';
-import { fetchCustomerClaimDetails, fetchServiceLinesDetails, fetchEdiDetails } from '../../api/claimDetailsApi';
+import { fetchCustomerClaimDetails, fetchServiceLinesDetails, fetchEdiDetails, saveClaimDetails , saveServiceLinestDetails} from '../../api/claimDetailsApi';
 import ServiceLinesEdit from './ServiceLinesEditComponent';
 import { formatDateToYYYYMMDD } from '../../utils/commonFunctions'
 import { objectEach } from 'highcharts';
@@ -66,6 +66,24 @@ const ClaimDetailEdit = () => {
         }
     }
 
+    const handleSaveClaim = async()=>{
+        const response = await saveClaimDetails(claimData)
+        if (response.success) {
+            alert('Claim Details Saved Successfully')
+        } else {
+            alert('Failed to save claim details')
+        }
+    }
+
+    const handleServiceLines = async()=>{
+        const response = await saveServiceLinestDetails(serviceLinesData)
+        if(response.success) {
+            alert('Service Details Saved Successfully')
+        }else{
+            alert('Failed to save service details')
+        }
+    }
+
     useEffect(() => {
         getClaimDetails(claimId)
         getServiceLinesDetails(claimId)
@@ -122,19 +140,19 @@ const ClaimDetailEdit = () => {
                                                         <input disabled={isDisables} type="text" name="claimAmount" value={(claimData?.claimAmount !== "" ? claimData?.claimAmount : "-")} onChange={(e) => handleInputChange(e, "CLAIM")} />
 
                                                     </div>
-                                                    <div className='claimdetails-value'>CHARGE AMOUNT [28]</div>
+                                                    <div className='claimdetails-value'>CHARGE AMOUNT  <span className='color-filenumber'>[28]</span></div>
                                                 </div>
                                                 <div className='text-start' >
                                                     <div style={{ width: "50%" }}>
                                                         <input disabled={isDisables} type="text" name="placeOfService" value={(claimData?.placeOfService !== "" ? claimData?.placeOfService : "-")} onChange={(e) => handleInputChange(e, "CLAIM")} />
                                                     </div>
-                                                    <div className='claimdetails-value'>PLACE OF SERVICE [24 b]</div>
+                                                    <div className='claimdetails-value'>PLACE OF SERVICE  <span className='color-filenumber'>[24 b]</span> </div>
                                                 </div>
                                                 <div className='text-start' >
                                                     <div style={{ width: "50%" }}>
                                                         <input disabled={isDisables} type="date" name="dateofService" value={(claimData?.dateofService !== "" ? formatDateToYYYYMMDD(claimData?.dateofService) : "-")} onChange={(e) => handleInputChange(e, "CLAIM")} />
                                                     </div>
-                                                    <div className='claimdetails-value'>SERVICE DATE [24 a]</div>
+                                                    <div className='claimdetails-value'>SERVICE DATE  <span className='color-filenumber'>[24 a]</span></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -157,25 +175,25 @@ const ClaimDetailEdit = () => {
                                                     <div >
                                                         <input style={{ width: "100%" }} disabled={isDisables} name="billingProviderNPI" type="text" value={(claimData?.billingProviderNPI !== "" ? claimData.billingProviderNPI : "-")} onChange={(e) => handleInputChange(e, "CLAIM")} />
                                                     </div>
-                                                    <div className='claimdetails-value'>Billing Provider NPI [33 a]</div>
+                                                    <div className='claimdetails-value'>Billing Provider NPI  <span className='color-filenumber'>[33 a]</span></div>
                                                 </div>
                                                 <div className="width-30 claim-detail-child-div-grid p-1" >
                                                     <div>
                                                         <input style={{ width: "100%" }} disabled={isDisables} type="text" name="renderingProviderNPI" value={(claimData?.renderingProviderNPI !== "" ? claimData.renderingProviderNPI : "-")} onChange={(e) => handleInputChange(e, "CLAIM")} />
                                                     </div>
-                                                    <div className='claimdetails-value'>Rendering Provider NPI [24 j]</div>
+                                                    <div className='claimdetails-value'>Rendering Provider NPI  <span className='color-filenumber'>[24 j]</span></div>
                                                 </div>
                                                 <div className="width-30 claim-detail-child-div-grid p-1" >
                                                     <div>
                                                         <input style={{ width: "100%" }} disabled={isDisables} type="text" name="billingProviderAddress1" value={(claimData?.billingProviderAddress1 !== "" ? claimData.billingProviderAddress1 : "-")} onChange={(e) => handleInputChange(e, "CLAIM")} />
                                                     </div>
-                                                    <div className='claimdetails-value'>Billing Provider Address [33]</div>
+                                                    <div className='claimdetails-value'>Billing Provider Address  <span className='color-filenumber'>[33]</span></div>
                                                 </div>
                                                 <div className="width-30 claim-detail-child-div-grid p-1" >
                                                     <div>
                                                         <input style={{ width: "100%" }} disabled={isDisables} type="text" name="renderingProviderName" value={(claimData?.renderingProviderName !== "" ? claimData.renderingProviderName : "-")} onChange={(e) => handleInputChange(e, "CLAIM")} />
                                                     </div>
-                                                    <div className='claimdetails-value'> Rendering Provider Name [33]</div>
+                                                    <div className='claimdetails-value'> Rendering Provider Name  <span className='color-filenumber'>[33]</span></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -198,7 +216,7 @@ const ClaimDetailEdit = () => {
                                                     <div>
                                                         <input style={{ width: "100%" }} disabled={isDisables} type="text" name="payerName" value={(claimData?.payerName !== "" ? claimData.payerName : "-")} onChange={(e) => handleInputChange(e, "CLAIM")} />
                                                     </div>
-                                                    <div className='claimdetails-value'>PAYER NAME [1]</div>
+                                                    <div className='claimdetails-value'>PAYER NAME  <span className='color-filenumber'>[1]</span></div>
                                                 </div>
 
                                                 <div className="width-30 claim-detail-child-div-grid p-1" >
@@ -230,42 +248,42 @@ const ClaimDetailEdit = () => {
                                                         <input style={{ width: "100%" }} disabled={isDisables} type="text" name="patientName" value={(claimData?.patientName !== "" ? claimData.patientName : "-")} onChange={(e) => handleInputChange(e, "CLAIM")} />
 
                                                     </div>
-                                                    <div className='claimdetails-value'>NAME  [2]</div>
+                                                    <div className='claimdetails-value'>NAME   <span className='color-filenumber'>[2]</span></div>
                                                 </div>
                                                 <div className="width-30 claim-detail-child-div-grid p-1" >
                                                     <div>
                                                         <input style={{ width: "100%" }} disabled={isDisables} type="text" name="memberId" value={(claimData?.memberId !== "" ? claimData.memberId : "-")} onChange={(e) => handleInputChange(e, "CLAIM")} />
 
                                                     </div>
-                                                    <div className='claimdetails-value'>POLICY NUMBER [1 a]</div>
+                                                    <div className='claimdetails-value'>POLICY NUMBER  <span className='color-filenumber'>[1 a]</span></div>
                                                 </div>
                                                 <div className="width-30 claim-detail-child-div-grid p-1" >
                                                     <div>
                                                         <input style={{ width: "100%" }} disabled={isDisables} type="text" name="patientGender" value={(claimData?.patientGender !== "" ? claimData.patientGender : "-")} onChange={(e) => handleInputChange(e, "CLAIM")} />
 
                                                     </div>
-                                                    <div className='claimdetails-value'> GENDER [3]</div>
+                                                    <div className='claimdetails-value'> GENDER  <span className='color-filenumber'>[3]</span></div>
                                                 </div>
                                                 <div className="width-30 claim-detail-child-div-grid p-1" >
                                                     <div>
                                                         <input style={{ width: "100%" }} disabled={isDisables} type="date" name="patientDOB" value={(claimData?.patientDOB !== "" ? formatDateToYYYYMMDD(claimData.patientDOB) : "-")} onChange={(e) => handleInputChange(e, "CLAIM")} />
 
                                                     </div>
-                                                    <div className='claimdetails-value'> DATE OF BIRTH [3]</div>
+                                                    <div className='claimdetails-value'> DATE OF BIRTH <span className='color-filenumber'>[3]</span></div>
                                                 </div>
                                                 <div className="width-30 claim-detail-child-div-grid p-1" >
                                                     <div>
                                                         <input style={{ width: "100%" }} disabled={isDisables} type="text" name="subscriber" value={(claimData?.subscriber !== "" ? claimData.subscriber : "-")} onChange={(e) => handleInputChange(e, "CLAIM")} />
 
                                                     </div>
-                                                    <div className='claimdetails-value'>SUBSCRIBER [4]</div>
+                                                    <div className='claimdetails-value'>SUBSCRIBER  <span className='color-filenumber'>[4]</span></div>
                                                 </div>
                                                 <div className="width-30 claim-detail-child-div-grid p-1" >
                                                     <div>
                                                         <input style={{ width: "100%" }} disabled={isDisables} type="text" name="subscriberAddress" value={(claimData?.subscriberAddress !== "" ? claimData.subscriberAddress : "-")} onChange={(e) => handleInputChange(e, "CLAIM")} />
 
                                                     </div>
-                                                    <div className='claimdetails-value'>Subscriber Address [7]</div>
+                                                    <div className='claimdetails-value'>Subscriber Address  <span className='color-filenumber'>[7]</span></div>
                                                 </div>
 
                                             </div>
@@ -273,7 +291,7 @@ const ClaimDetailEdit = () => {
                                     </details>
                                 </div>
                             </div>
-                            <button className="btn btn-primary mt-2" onClick={() => { " handleSaveClaim()" }}>
+                            <button className="btn btn-primary mt-2" onClick={() => { handleSaveClaim()}}>
                                 SAVE
                             </button>
                         </div>
@@ -297,7 +315,7 @@ const ClaimDetailEdit = () => {
                                     </>)
                                 })}
 
-                                <button className="btn btn-primary mt-2" onClick={() => { " handleSaveClaim()" }}>
+                                <button className="btn btn-primary mt-2" onClick={() => { handleServiceLines()}}>
                                     SAVE
                                 </button></> : <> No Data Found</>}
 
@@ -320,7 +338,7 @@ const ClaimDetailEdit = () => {
             default:
                 return null;
         }
-    };
+    }; 
 
     return (
         <div className="claim-detail">

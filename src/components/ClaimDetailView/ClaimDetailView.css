@@ -113,7 +113,11 @@ Container for the entire component .claim-detail {
 .section-details {
     max-height: 500px; /* Adjust the height as needed */
     overflow-y: auto;  /* Enable vertical scrolling */
-  }
+}
+
+.color-filenumber{
+    color: maroon;
+}
   
 
 /* Export button styling */

@@ -1,16 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Route, Routes, useNavigate } from 'react-router-dom';
-import ClaimDetailView from '../ClaimDetailView';
-import ViewClaimReconciliation from '../ViewClaimReconciliation';
-import Grid from '../../Grid';
-import Reports from '../Reports';
-import Analytics from '../Analytics';
-import Settings from '../Settings';
-
 import './Dashboard.css';
 import CustomerDashboard from './CustomerDashboard.js';
 import AdminDashboard from './AdminDashboard.js';
-import NotFound from '../ComponentNotFound/index.js';
 
 const Dashboard = () => {
     const [userType, setUserType] = useState(null)

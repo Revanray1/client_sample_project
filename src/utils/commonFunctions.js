@@ -11,8 +11,12 @@ export const  formatDateToMMDDYYYY= (dateString)=> {
     return `${month}-${day}-${year}`;
 }
 
-export const    formatDateToYYYYMMDD = (data) => {
+export const formatDateToYYYYMMDD = (data) => {
     let date = data.split(" ")[0]
     let dateArray = date.split("/")
     return `${dateArray[2]}-${dateArray[0]}-${dateArray[1]}`
+}
+
+export const DateAndTimeToDAte = (date)=>{
+    return date.split('T')[0];
 }

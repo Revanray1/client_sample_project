@@ -1,0 +1,83 @@
+.user-info-container{
+display: flex;
+}
+
+.user-info-name{
+    font-size: 40px !important;
+}
+.user-info-name-div{
+    align-items: baseline;
+    width: 100%;
+    display: flex !important;
+}
+.user-container-part-2{
+    width: 50% !important;
+    text-align: left !important;
+    display: grid !important;;
+}
+.ml-10{
+    margin-left: 10px;
+}
+
+.user-info-child-div{
+    margin-left: 30px;
+}
+
+.table-container{
+    width: 100%;
+    height: 100vh;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+
+.table-container-scroller {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/* Style the scrollbar */
+.table-container-scroller::-webkit-scrollbar {
+    width: 12px; 
+    height: 12px; 
+}
+/* Style the track (the background) */
+.table-container-scroller::-webkit-scrollbar-track {
+    background-color: #f1f1f1; 
+    border-radius: 10px;
+}
+
+/* Style the thumb (the draggable part) */
+.table-container-scroller::-webkit-scrollbar-thumb {
+    background-color: #888; /* Dark grey thumb */
+    border-radius: 10px;
+    border: 3px solid #f1f1f1; /* Optional border for contrast */
+}
+
+/* Hover effect for the thumb */
+.table-container-scroller::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Darker thumb when hovered */
+}
+
+/* Style the bottom-right corner (if necessary) */
+.table-container-scroller::-webkit-scrollbar-corner {
+    background-color: #f1f1f1;
+}
+
+  
+
+/* media Queries for Responsive */
+@media (max-width: 713px) {
+    .user-info-container{
+       display: grid;
+    }
+    .user-info-name{
+        font-size: 25px !important;
+    }
+    .user-container-part-2{
+        width: 100% !important;
+    }
+    .user-info-child-div{
+        margin-left: 15px;
+    }
+}

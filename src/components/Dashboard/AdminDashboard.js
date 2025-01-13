@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { fetchDashboardCountDetail } from '../../api/dashboardApi/index.js';
 import { colors } from '../../utils/color.js';
 import ChartViewPage from '../UiComponents/ChartViewPage.js';
+import DateRangeSelector from '../UiComponents/DateRangeSelector.js';
 
 const AdminDashboard = () => {
     const [dashboardCount, setDashboardCount] = useState(null)
@@ -47,6 +48,7 @@ const AdminDashboard = () => {
         {dashboardCount &&
             <>
                 <h5 className='font-weight-bold'>Welcome To Clearing House - Dashboard</h5>
+                <DateRangeSelector />
                 <div className="dashboard-header gap-2 mt-4">
                     {dashboardCount.map((data, index) => (<>
                         <div class="dashboard-box d-flex shadow rounded " style={{ backgroundColor: `` }}>
@@ -58,12 +60,12 @@ const AdminDashboard = () => {
                         </div>
                     </>))}
                 </div>
-                <div className='' style={{ height: "300px" }}>
-                    <div className='d-flex'>
+                <div className='' style={{ height: "100%" }}>
+                    <div className=''>
                         <div className='d-flex gap-1 mt-4 '>
                             <ChartViewPage data={dashboardCount} />
-                            <div>
-                                <div className='' style={{ marginLeft: "10%", marginTop: "50%", display: "flex", textAlign: "left", justifyContent: "center", alignItems: "center", minWidth: "300px" }}>
+                            <div style={{ marginLeft: "2%", marginTop: "5%", display: "flex", textAlign: "left", justifyContent: "center", alignItems: "center", minWidth: "300px" }}>
+                                <div className='' >
                                     <div>
                                         <div className=''>
                                             Status Code:

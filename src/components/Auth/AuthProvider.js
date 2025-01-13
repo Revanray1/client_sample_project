@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
         sessionStorage.removeItem('expiryTime');
         localStorage.removeItem("userName");
         localStorage.removeItem("userType");
+        localStorage.removeItem("UserId");
         setIsAuthenticated(false);
     };
 

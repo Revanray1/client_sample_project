@@ -22,11 +22,11 @@ const ClaimTable = ({ onStatusChange, claimData, claimloader, currentFileName })
         claimid: '',
 
     });
-    const handleEdit = (id) => {
-        navigate(`/view-claim-reconciliation/claim-details-edit/${id}`);
+    const handleEdit = (id, claimNumber) => {
+        navigate(`/view-claim-reconciliation/claim-details-edit/claimId/${id}/claimNumber/${claimNumber}`);
     };
-    const handleView = (id) => {
-        navigate(`/view-claim-reconciliation/claim-details/${id}`);
+    const handleView = (id,claimNumber) => {
+        navigate(`/view-claim-reconciliation/claim-details/claimId/${id}/claimNumber/${claimNumber}`);
     };
 
     const sortedClaims = [...currentFileData].sort((a, b) => {
@@ -246,16 +246,14 @@ const ClaimTable = ({ onStatusChange, claimData, claimloader, currentFileName })
                                                     </button>
                                                 </td>
                                                 <td className='text-center '>
-                                                    <button className="btn btn-primary btn-sm "
-                                                        onClick={() => handleView(claim.claimid)}>
+                                                    <button className="btn btn-primary btn-sm m-1 "
+                                                        onClick={() => handleView(claim.claimid,  claim.claimNumber)}>
                                                         View
                                                     </button>
-                                                    <button className="btn btn-primary btn-sm "
-                                                        onClick={() => handleEdit(claim.claimid)}>
+                                                    <button className="btn btn-secondary btn-sm "
+                                                        onClick={() => handleEdit(claim.claimid, claim.claimNumber)}>
                                                         Edit 
                                                     </button>
-                                                    {/* className={`status-button ${file.status.toLowerCase()}`} */}
-
                                                 </td>
                                             </tr>
                                         ))}

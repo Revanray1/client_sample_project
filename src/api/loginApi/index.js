@@ -17,7 +17,7 @@ export const adminLogin = async (userName, password, customerID, isCustomerLogin
 
 export const userLogin = async (userName, password, customerID, isCustomerLogin) => {
     try {
-        const response = await axiosInstance.post(`api/Authentication/customerlogin`, {
+        const response = await axiosInstance.post(`api/Authentication/login`, {
                 userName: userName,
                 password: password,
                 customerID: customerID,

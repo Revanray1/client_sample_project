@@ -189,7 +189,7 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
 
                                 </div>  
                         <div className='overflow-auto  custom-scroll'>
-                            <div className='container d-flex shadow p-2 mb-4 bg-white rounded  justify-content-evenly  min-width-1200'>
+                            <div className='container d-flex shadow p-2 mb-4 bg-white rounded  justify-content-evenly  min-width-800'>
                                 <div className='d-flex align-items-center fontsize-12 custom-scroll '>
                                     Status Code:
                                 </div>
@@ -223,7 +223,7 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
                             </div>
                         </div>
 
-                        <div className=''>
+                        <div className='table-inner-div table-custom-scroll'>
                             <table className="file-table table-sm min-width-1200" >
                                 <thead>
                                     <tr >

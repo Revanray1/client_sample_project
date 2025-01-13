@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { fetchDashboardCountDetail } from '../../api/dashboardApi/index.js';
 import { colors } from '../../utils/color.js';
 import ChartViewPage from '../UiComponents/ChartViewPage.js';
+import DateRangeSelector from '../UiComponents/DateRangeSelector.js';
 
 const CustomerDashboard = () => {
     const [dashboardCount, setDashboardCount] = useState(null)
@@ -59,6 +60,7 @@ const CustomerDashboard = () => {
         {dashboardCount &&
             <>
               <h5 className='font-weight-bold'>Welcome To Clearing House - Dashboard</h5>
+                <DateRangeSelector />
                 <div className="dashboard-header gap-2 mt-4">
                     {dashboardCount.map((data, index) => (<>
                         <div class="dashboard-box d-flex shadow rounded " style={{ backgroundColor: `` }}>

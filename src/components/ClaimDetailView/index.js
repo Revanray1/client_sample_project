@@ -84,15 +84,15 @@ const ClaimDetailView = () => {
                                             </div>
                                             <div className='text-start'>
                                                 <div>{data?.claimAmount === "" ? "-" : Number(data?.claimAmount).toFixed(2)}</div>
-                                                <div className='claimdetails-value'>CHARGE AMOUNT [28]</div>
+                                                <div className='claimdetails-value'>CHARGE AMOUNT  <span className='color-filenumber'>[28]</span></div>
                                             </div>
                                             <div className='text-start'>
                                                 <div>{data?.placeOfService === "" ? "-" : data?.placeOfService}</div>
-                                                <div className='claimdetails-value'>PLACE OF SERVICE [24 b]</div>
+                                                <div className='claimdetails-value'>PLACE OF SERVICE <span className='color-filenumber'>[24 b]</span></div>
                                             </div>
                                             <div className='text-start'>
                                                 <div>{(data?.dateofService ? (data?.dateofService.split(" "))[0] : "-")}</div>
-                                                <div className='claimdetails-value'>SERVICE DATE [24 a]</div>
+                                                <div className='claimdetails-value'>SERVICE DATE <span className='color-filenumber'>[24 a]</span></div>
                                             </div>
 
                                         </div>
@@ -114,19 +114,19 @@ const ClaimDetailView = () => {
                                         <div className='claim-detail-child-div'>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
                                                 <div>{data?.billingProviderNPI === "" ? "-" : data?.billingProviderNPI}</div>
-                                                <div className='claimdetails-value'>Billing Provider NPI [33 a]</div>
+                                                <div className='claimdetails-value'>Billing Provider NPI <span className='color-filenumber'>[33 a]</span></div>
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
                                                 <div>{data?.renderingProviderNPI === "" ? "-" : data?.renderingProviderNPI}</div>
-                                                <div className='claimdetails-value'>Rendering Provider NPI [24 j]</div>
+                                                <div className='claimdetails-value'>Rendering Provider NPI <span className='color-filenumber'>[24 j]</span></div>
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
                                                 <div>{data?.billingProviderAddress1 === "" ? "-" : data?.billingProviderAddress1}</div>
-                                                <div className='claimdetails-value'>Billing Provider Address [33]</div>
+                                                <div className='claimdetails-value'>Billing Provider Address <span className='color-filenumber'>[33]</span></div>
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
                                                 <div>{data?.renderingProviderName === "" ? "-" : data?.renderingProviderName}</div>
-                                                <div className='claimdetails-value'> Rendering Provider Name [33]</div>
+                                                <div className='claimdetails-value'> Rendering Provider Name <span className='color-filenumber'>[33]</span></div>
                                             </div>
                                         </div>
                                     </div>
@@ -147,7 +147,7 @@ const ClaimDetailView = () => {
                                         <div className='claim-detail-child-div'>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
                                                 <div>{data?.payerName === "" ? "-" : data?.payerName}</div>
-                                                <div className='claimdetails-value'>PAYER NAME [1]</div>
+                                                <div className='claimdetails-value'>PAYER NAME <span className='color-filenumber'>[1]</span></div>
                                             </div>
 
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
@@ -174,27 +174,27 @@ const ClaimDetailView = () => {
                                         <div className='claim-detail-child-div'>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
                                                 <div>{(data?.patientName === "") ? "-" : data.patientName}</div>
-                                                <div className='claimdetails-value'>NAME  [2]</div>
+                                                <div className='claimdetails-value'>NAME  <span className='color-filenumber'>[2]</span></div>
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
                                                 <div>{data?.memberId === "" ? "-" : data?.memberId}</div>
-                                                <div className='claimdetails-value'>POLICY NUMBER [1 a]</div>
+                                                <div className='claimdetails-value'>POLICY NUMBER <span className='color-filenumber'>[1 a]</span></div>
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
                                                 <div>{data?.patientGender === "" ? "-" : data?.patientGender}</div>
-                                                <div className='claimdetails-value'> GENDER [3]</div>
+                                                <div className='claimdetails-value'> GENDER <span className='color-filenumber'>[3]</span></div>
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
                                                 <div>{data?.patientDOB === "" ? "-" : (data?.patientDOB?.split(" "))[0]}</div>
-                                                <div className='claimdetails-value'> DATE OF BIRTH [3]</div>
+                                                <div className='claimdetails-value'> DATE OF BIRTH<span className='color-filenumber'>[3]</span></div>
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
                                                 <div>{data?.subscriber === "" ? "-" : data?.subscriber}</div>
-                                                <div className='claimdetails-value'>SUBSCRIBER [4]</div>
+                                                <div className='claimdetails-value'>SUBSCRIBER <span className='color-filenumber'>[4]</span></div>
                                             </div>
                                             <div className="width-30 claim-detail-child-div-grid p-1" >
                                                 <div>{data?.subscriberAddress === "" ? "-" : data?.subscriberAddress}</div>
-                                                <div className='claimdetails-value'>Subscriber Address [7]</div>
+                                                <div className='claimdetails-value'>Subscriber Address <span className='color-filenumber'>[7]</span></div>
                                             </div>
 
                                         </div>
