@@ -42,47 +42,42 @@ const SideLayout = ({ children }) => {
         </div >
         <div className='sidebar-list-height'>
           <ul className="nav">
-            <li className="nav-item w-100">
-              <NavLink to="/dashboard" className="nav-link">
+            <li className="nav-item w-100 ">
+              <NavLink to="/dashboard" className="nav-link sidenavbar ">
                 <FontAwesomeIcon icon={faHome} className="nav-icon" /> {isSidebarOpen && 'Overview'}
               </NavLink>
             </li>
 
 
             {userType === "Admin" && <li className="nav-item w-100">
-              <NavLink to="/user-list" className="nav-link">
+              <NavLink to="/user-list" className="nav-link sidenavbar">
                 <FontAwesomeIcon icon={faUsers} className="nav-icon" /> {isSidebarOpen && 'User List'}
               </NavLink>
             </li>} 
 
             <li className="nav-item w-100">
-              <NavLink to="/view-claim-reconciliation" className="nav-link">
+              <NavLink to="/view-claim-reconciliation" className="nav-link sidenavbar">
                 <FontAwesomeIcon icon={faListAlt} className="nav-icon" /> {isSidebarOpen && 'ClaimList'}
               </NavLink>
             </li>
 
             <li className="nav-item w-100">
-              <NavLink to="/user-info" className="nav-link">
+              <NavLink to="/user-info" className="nav-link sidenavbar">
                 <FontAwesomeIcon icon={faUsers} className="nav-icon" /> {isSidebarOpen && 'User Info'}
               </NavLink>
             </li>
 
             <li className="nav-item w-100">
-              <NavLink to="/customer-info" className="nav-link">
+              <NavLink to="/customer-info" className="nav-link sidenavbar">
                 <FontAwesomeIcon icon={faUser} className="nav-icon" /> {isSidebarOpen && 'Customer Info'}
               </NavLink>
             </li>
 
-            <li className="nav-item w-100">
-              <a href="#" onClick={handleLogout} className="nav-link">
+            <li className="nav-item w-100" style={{}}>
+              <a href="#" onClick={handleLogout} className="nav-link sidenavbar">
                 <FontAwesomeIcon icon={faSignOutAlt} className="nav-icon" /> {isSidebarOpen && 'Logout'}
               </a>
             </li>
-
-
-
-
-
           </ul>
         </div>
         <div className='d-flex p-3  justify-content-center' >

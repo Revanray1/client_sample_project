@@ -32,8 +32,8 @@ const ClaimDetailView = () => {
     const getEdiDetails = async (id) => {
         try {
             const response = await fetchEdiDetails(id)
-            if(response.ediContent !== ""){
-                const ediContent = response.ediContent.split('~').filter(line => line.trim()!== "");
+            if (response.ediContent !== "") {
+                const ediContent = response.ediContent.split('~').filter(line => line.trim() !== "");
                 setEdiData(ediContent);
             }
         } catch (err) {
@@ -44,7 +44,7 @@ const ClaimDetailView = () => {
         getClaimDetails(claimId)
         getServiceLinesDetails(claimId)
         getEdiDetails(claimNumber)
-        
+
     }, []);
     useEffect(() => {
         const user = localStorage.getItem('userType');
@@ -204,7 +204,7 @@ const ClaimDetailView = () => {
                         </div>
                     </div>
                 </>);
-            case 'SERVICE LINES':
+                // case 'SERVICE LINES':
                 return (
                     <>
                         {serviceLinesData.length > 0 ?
@@ -220,8 +220,8 @@ const ClaimDetailView = () => {
                                         <ServiceLines data={data} index={index} />
                                     )
                                 })}
-                                </> : <> No Data Found</>}
-                            </>);
+                            </> : <> No Data Found</>}
+                    </>);
             case 'EDI VIEW':
                 return (
                     <div className="section ">
@@ -253,12 +253,12 @@ const ClaimDetailView = () => {
                 >
                     CLAIM
                 </button>
-                <button
+                {/* <button
                     className={`tab ${activeTab === 'SERVICE LINES' ? 'active' : ''}`}
                     onClick={() => setActiveTab('SERVICE LINES')}
                 >
                     SERVICE LINES ({serviceLinesData.length})
-                </button>
+                </button> */}
                 {(userType && userType === 'Admin') && <button
                     className={`tab ${activeTab === 'EDI VIEW' ? 'active' : ''}`}
                     onClick={() => setActiveTab('EDI VIEW')}
@@ -270,6 +270,43 @@ const ClaimDetailView = () => {
             <div className="tab-content">
                 {(data && Object.keys(data).length !== 0) && renderTabContent()}
             </div>
+
+
+
+            {
+                activeTab === 'CLAIM' &&
+                (<>
+                    <div className="tabs" style={{ float: "left", width: '100%' }}>
+                        <button
+                            style={{ width: '30%' }}
+                            className={`tab active`}
+                        >
+                            SERVICE LINES ({serviceLinesData.length})
+                        </button>
+
+                    </div>
+
+                    <div className="tab-content">
+                        {serviceLinesData.length > 0 ?
+
+                            <>
+                                <div className='text-start'>
+                                    <h5>{serviceLinesData[0]?.claimId ? `${serviceLinesData[0]?.claimId}` : ""} Claim  Box No - [24] </h5>
+                                </div>
+
+
+                                {serviceLinesData.map((data, index) => {
+                                    return (
+                                        <ServiceLines data={data} index={index} />
+                                    )
+                                })}
+                            </> : <> No Data Found</>}
+                    </div>
+                </>)
+
+            }
+
+
         </div>
     );
 };

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css'; // Ensure this path is correct
-import { useAuth } from '../Auth/AuthProvider.js'; 
-import { userLogin , adminLogin } from '../../api/loginApi/index.js'
+import { useAuth } from '../Auth/AuthProvider.js';
+import { userLogin, adminLogin } from '../../api/loginApi/index.js'
 
 const Login = () => {
 
@@ -21,43 +21,43 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     login()
-    if (activeTab === 'admin') {      
+    if (activeTab === 'admin') {
       try {
-          setLoader(true)
-          const response = await adminLogin(email,password, "0", "0")
-              if(response.status === 200) {
-                localStorage.setItem('userName',response.data.replace(/"/g, ''));
-                localStorage.setItem('userType',"Admin");
-                localStorage.setItem('UserId',"0");
-                login('adminToken');
-                navigate('/dashboard');
-              } else {
-                setLoader(false)
-                setError('Invalid admin email or password');
-              }
-           } catch (err) {
-             setLoader(false)
-             console.error('Error fetching claim data:', err)
-          }  
+        setLoader(true)
+        const response = await adminLogin(email, password, "0", "0")
+        if (response.status === 200) {
+          localStorage.setItem('userName', response.data.replace(/"/g, ''));
+          localStorage.setItem('userType', "Admin");
+          localStorage.setItem('UserId', "0");
+          login('adminToken');
+          navigate('/dashboard');
+        } else {
+          setLoader(false)
+          setError('Invalid admin email or password');
+        }
+      } catch (err) {
+        setLoader(false)
+        console.error('Error fetching claim data:', err)
+      }
     } else {
 
       try {
         setLoader(true)
-        const response = await userLogin(email,password, customerId, "1")
-              if(response.status === 200) {
-                localStorage.setItem('userName',response.data);
-                localStorage.setItem('userType',"Customer");
+        const response = await userLogin(email, password, customerId, "1")
+        if (response.status === 200) {
+          localStorage.setItem('userName', response.data);
+          localStorage.setItem('userType', "Customer");
 
-                login('customerToken'); // customerToken
-                navigate('/dashboard'); // Adjust the path as needed
-              } else {
-                setLoader(false)
-                setError('Invalid admin email or password');
-              }
-           } catch (err) {
-              setLoader(false)
-              console.error('Error fetching claim data:', err)
-          } 
+          login('customerToken'); // customerToken
+          navigate('/dashboard'); // Adjust the path as needed
+        } else {
+          setLoader(false)
+          setError('Invalid admin email or password');
+        }
+      } catch (err) {
+        setLoader(false)
+        console.error('Error fetching claim data:', err)
+      }
     }
   };
 

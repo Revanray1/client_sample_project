@@ -26,11 +26,11 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
         fileId: ''
     });
 
-
     useEffect(() => {
-        const data = files.slice(0, 1 * 10);
+        const data = files.slice(0, currentPage * 10);
         setCurrentFileData(data)
-    }, [files])
+        
+    }, [files, currentPage])
 
     const userData = JSON.parse(localStorage.getItem('userData'));
     // const [fileStartDate, setFileStartDate] = useState('01-08-2024');
@@ -62,7 +62,7 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
         (file.charges || '').toString().includes(filters.charges) &&
         (file.status || '').toLowerCase().includes(filters.status.toLowerCase())
     );
-    
+
     const requestSort = (key) => {
         const newOrder = sortOrder === "asc" ? "desc" : "asc";
         setSortOrder(newOrder);
@@ -187,7 +187,7 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
                     <>
                         <div className=''>
 
-                                </div>  
+                        </div>
                         <div className='overflow-auto  custom-scroll'>
                             <div className='container d-flex shadow p-2 mb-4 bg-white rounded  justify-content-evenly  min-width-800'>
                                 <div className='d-flex align-items-center fontsize-12 custom-scroll '>
@@ -263,10 +263,10 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
                                                     </th>
 
                                                     )
-                                                }else if(data.headerType == "none"){
-                                                  return ( <th >
-                                                            <div className='filetable-actionbutton'>Action</div>
-                                                        </th>)
+                                                } else if (data.headerType == "none") {
+                                                    return (<th >
+                                                        <div className='filetable-actionbutton'>Action</div>
+                                                    </th>)
                                                 }
                                             }
 
@@ -360,13 +360,13 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
                                 <tbody>
                                     {filteredFiles.map((file, index) => (
                                         <tr key={index}>
-                                           {file.isVisible &&  <td className='text-center'>{file.fileId}</td> }
-                                           {file.isVisible && <td className='text-center'>{file.fileName}</td>}
-                                            {file.isVisible &&  <td className='text-center'>{formatDateToMMDDYYYY(file.fileDate)}</td>}
+                                            {file.isVisible && <td className='text-center'>{file.fileId}</td>}
+                                            {file.isVisible && <td className='text-center'>{file.fileName}</td>}
+                                            {file.isVisible && <td className='text-center'>{formatDateToMMDDYYYY(file.fileDate)}</td>}
                                             {/* <td>{file.fileSize}</td> */}
-                                            {file.isVisible &&  <td className='text-center'>{file.numClaims}</td>}
+                                            {file.isVisible && <td className='text-center'>{file.numClaims}</td>}
                                             {/* <td>{file.charges}</td> */}
-                                            {file.isVisible &&  <td className='text-center'>
+                                            {file.isVisible && <td className='text-center'>
                                                 <button
                                                     className={`status-button ${file.status.toLowerCase()}`}
                                                 //onClick={() => onStatusChange(index)}
@@ -374,7 +374,7 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
                                                     {file.status}
                                                 </button>
                                             </td>}
-                                            {file.isVisible &&  <td className='text-center'>
+                                            {file.isVisible && <td className='text-center'>
                                                 <button className="btn btn-primary btn-sm"
                                                     onClick={() => handleViewClaimData(file.fileName)}>
                                                     View
@@ -386,14 +386,25 @@ const FileTable = ({ onStatusChange, files, setFiles, fileLoader, handleViewClai
                                 </tbody>
                             </table>
                             <div className='d-flex gap-3 justify-content-center' >
-                                <div>
-                                    <button type="button" disabled={currentPage <= 1 ? true : false} class="btn btn-light" onClick={() => handlePagination("Prev")}>{"<  Prev "}</button>
-                                </div>
-                                <div className=" d-flex shadow-none bg-light rounded align-items-center justify-content-center width-50" >{currentPage}</div>
-                                <div>
-                                    <button disabled={files.length <= currentPage * 10 ? true : false} type="button" class="btn btn-light" onClick={() => handlePagination("Next")}> {"Next > "}</button>
 
+
+                                <div className='d-flex'> 
+                                    <div>
+                                      <button type="button" disabled={currentPage <= 1 ? true : false} class="btn btn-light" onClick={() => handlePagination("Prev")}>{"<  Prev "}</button>
+                                    </div>
+                                    <div className=" d-flex shadow-none bg-light rounded align-items-center justify-content-center width-50" >{currentPage}</div>
+                                    <div>
+                                        <button disabled={files.length <= currentPage * 10 ? true : false} type="button" class="btn btn-light" onClick={() => handlePagination("Next")}> {"Next > "}</button>
+                                    </div>
                                 </div>
+                                <div className='d-flex' style={{ float: "right" }}>
+                                    <select class="form-select" aria-label="Default select example" onChange={(e)=> setCurrentPage(e.target.value)}>
+                                        <option selected value="1">10</option>
+                                        <option value="2">20</option>
+                                        <option value="3">30</option>
+                                    </select>
+                                </div>
+
                             </div>
 
                         </div>

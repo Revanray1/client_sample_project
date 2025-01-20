@@ -5,7 +5,6 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import "./UserList.css";
 import AddUserModal from './AddUserModal';
 import EditUserModal from './EditUserModal'
-import { addUser } from '../../api/userListApi';
 import { fetchAllUserList } from '../../api/UserApi';
 import { DateAndTimeToDAte } from '../../utils/commonFunctions';
 import ViewUserModal from './ViewUserModal';
