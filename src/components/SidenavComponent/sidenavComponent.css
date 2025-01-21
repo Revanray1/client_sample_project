@@ -4,3 +4,8 @@
     text-overflow: ellipsis;
 }
     
+
+.sidenavbar.active{
+    color: azure !important;
+    background-color: skyblue;
+}
