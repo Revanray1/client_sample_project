@@ -225,6 +225,114 @@
   .page-info {
     margin: 0 0.5rem!important;
   }
+/* _______________________________________ */
+
+
+
+
+.toggle{
+  position: relative;
+}
+
+.toggle-input{
+  display: none;
+}
+
+.toggle-label{
+  display: block;
+  height: 30px;
+  width: 60px;
+  background: red;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.toggle-label::after{
+  content: '';
+  background: white;
+  width: 25px;
+  height: 25px;
+  top: 2px;
+  left: 2px;
+  position: absolute;
+  border-radius: 30px;
+  transition: 0.3s ease;
+
+}
+.toggle-input:checked + .toggle-label::after{
+left: 32px;
+}
+.toggle-input:checked + .toggle-label{
+  background: green;
+}
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* .toggle{
+    position: relative; 
+    display: inline-block;
+  }
+
+.toggle__input {
+  display: none;
+} 
+
+.toggle__label {
+  display: block;
+  width: 60px;
+  height: 30px;
+  background-color: rgb(237, 76, 76);
+  border-radius: 99px;
+  cursor: pointer;
+  transition:0.3s ease;
+}
+
+.toggle__input:checked + .toggle__label::after {
+  left: 32px;
+}
+
+.toggle__input:checked + .toggle__label {
+  background-color: rgb(111, 234, 111)
+}
+
+.toggle__label::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 26px;
+  height: 26px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: left 0.3s ease;
+}  */
+
+
+
+
+
   
   @media (max-width: 768px) {
     .modal-content{
