@@ -48,8 +48,8 @@ function App() {
             <Route path="/customer-info"  element={<ProtectedRoute element={<SideLayout><CustomerInfo /></SideLayout>} />} /> 
 
             
-            <Route path="/forgot-password" element={<ProtectedRoute element={<ForgetPassword />} />} />
-            <Route path="/signup" element={<ProtectedRoute element={<SignUp />} />} /> 
+            <Route path="/forgot-password" element={<ForgetPassword />} />
+            <Route path="/signup" element={<SignUp />} /> 
 
 
             {/* Default Route: Redirect to Login */}

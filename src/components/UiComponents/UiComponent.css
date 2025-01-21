@@ -79,3 +79,46 @@ chartview-inner-container{
     align-items: center;
     height: 100vh;
 }
+
+
+
+/* TOGGLE - COMPONENT */
+
+
+.toggle{
+    position: relative;
+  }
+  
+  .toggle-input{
+    display: none;
+  }
+  
+  .toggle-label{
+    display: block;
+    height: 30px;
+    width: 60px;
+    background: rgb(239, 64, 64);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  .toggle-label::after{
+    content: '';
+    background: white;
+    width: 25px;
+    height: 25px;
+    top: 2px;
+    left: 2px;
+    position: absolute;
+    border-radius: 30px;
+    transition: 0.3s ease;
+  
+  }
+  .toggle-input:checked + .toggle-label::after{
+  left: 32px;
+  }
+  .toggle-input:checked + .toggle-label{
+    background: rgb(48, 189, 48);
+  }
+    
+  

@@ -23,14 +23,14 @@ const CustomerDashboard = () => {
          getDashboardCountDetail(1, formatDateToMMDDYYYY(startDate), formatDateToMMDDYYYY(endDate))
     }
     
-    const getDashboardCountDetail = async () => {
+    const getDashboardCountDetail = async (id,startDate,endDate) => {
         const user = localStorage.getItem('userType');
         if (user) {
             setUserType(user)
         }
         try {
             setLoader(true)
-            let response = await fetchDashboardCountDetail(1)
+            let response = await fetchDashboardCountDetail(id,startDate,endDate)
             if (user === "Customer") {
                 response.forEach(item => {
                     delete item.total999Generated;
@@ -66,13 +66,13 @@ const CustomerDashboard = () => {
         }
     };
 
-        useEffect(() => {
+    useEffect(() => {
             let currentDate = new Date()
             let dateBefore_30 = new Date()
             dateBefore_30.setDate(currentDate.getDate() - 30)
             setReportToDate(formatISTDateToYYYYMMDD(currentDate))
             setReportFromDate(formatISTDateToYYYYMMDD(dateBefore_30))
-        }, [])
+    }, [])
 
         
     useEffect(() => {

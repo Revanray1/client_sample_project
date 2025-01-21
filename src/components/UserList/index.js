@@ -9,6 +9,7 @@ import { fetchAllUserList } from '../../api/UserApi';
 import { DateAndTimeToDAte } from '../../utils/commonFunctions';
 import ViewUserModal from './ViewUserModal';
 import LoaderComponent from '../UiComponents/LoaderComponent';
+import ToggleComponent from '../UiComponents/ToggleComponent';
 
 const UserList = () => {
   const [data, setData] = useState([]); // Static data
@@ -85,6 +86,7 @@ const UserList = () => {
               <th>Created By</th>
               <th>Created Date</th>
               <th>Actions</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -104,6 +106,9 @@ const UserList = () => {
                     <FontAwesomeIcon icon={faEdit} />
                   </button>
                 </td>
+                <td >
+                <ToggleComponent  index={key} value={row.status}/>
+               </td>
               </tr>
             ))}
           </tbody>

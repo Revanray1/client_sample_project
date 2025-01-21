@@ -142,7 +142,7 @@ const Login = () => {
         <div>
           {error && <p className="text-danger" >{error}</p>}
         </div>
-        <div className="signup-container">
+        <div className="signup-container m-2">
           <p>Don't have an account? <a onClick={handleSignUpClick} style={{ cursor: 'pointer' }}>Sign Up</a></p>
         </div>
       </div>
