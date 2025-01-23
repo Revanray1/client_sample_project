@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faEdit , faEye} from '@fortawesome/free-solid-svg-icons';
 import "./UserList.css";
 import AddUserModal from './AddUserModal';
 import EditUserModal from './EditUserModal'
@@ -23,6 +23,12 @@ const UserList = () => {
   const navigate = useNavigate();
 
   const handleEdit = (user) => {
+    setSelectedUser(user);
+    setIsModalOpen(true);
+    // setIsModalOpen(true);
+  };
+
+  const handleView= (user) => {
     setSelectedUser(user);
     setIsViewUserModalOpen(true);
     // setIsModalOpen(true);
@@ -79,7 +85,7 @@ const UserList = () => {
         <table className="table">
           <thead>
             <tr>
-              <th>User Id</th>
+              <th >User Id</th>
               <th>User Name</th>
               <th>Name</th>
               <th>CustomerLogin</th>
@@ -104,6 +110,12 @@ const UserList = () => {
                     onClick={() => handleEdit(row)}
                   >
                     <FontAwesomeIcon icon={faEdit} />
+                  </button>
+                  <button
+                    className="btn btn-icon btn-sm"
+                    onClick={() => handleView(row)}
+                  >
+                    <FontAwesomeIcon icon={faEye} />
                   </button>
                 </td>
                 <td >

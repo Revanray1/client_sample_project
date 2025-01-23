@@ -260,8 +260,8 @@ const AddUserModal = ({ setIsAddUserModalOpen, handleAddUserData }) => {
                             <div className='col-md-5'>
                                 <select class="form-select" aria-label="Default select example" onChange={(e) => setUserData({ ...userData, isCustomerLogin: e.target.value })}>
                                     <option disabled selected>select Options</option>
-                                    <option value="true">True</option>
-                                    <option value="true">False</option>
+                                    <option value="True">True</option>
+                                    <option value="False">False</option>
                                 </select>
                             </div>
                             <div className='col-md-1'></div>

@@ -19,7 +19,6 @@ const ViewUserModal = ({ setIsViewUserModalOpen , selectedUser}) => {
                                 required="true"
                                 type="text"
                                 value={userData.firstName}
-                            onChange={(e) => setUserData({...userData, firstName: e.target.value })}
                             />
 
                         </div>
@@ -36,7 +35,6 @@ const ViewUserModal = ({ setIsViewUserModalOpen , selectedUser}) => {
                                 disabled
                                 type="text"
                                 value={userData.lastName}
-                            onChange={(e) => setUserData({...userData, lastName: e.target.value })}
                             />
 
                         </div>
@@ -67,7 +65,6 @@ const ViewUserModal = ({ setIsViewUserModalOpen , selectedUser}) => {
                                     disabled
                                     type="text"
                                     value={userData.userId}
-                                onChange={(e) => setUserData({...userData, userId: e.target.value })}
                                 />
 
                             </div>
@@ -144,7 +141,7 @@ const ViewUserModal = ({ setIsViewUserModalOpen , selectedUser}) => {
                             <label>Hint Question</label>
                         </div>
                         <div className='col-md-5'>
-                        <select class="form-select" aria-label="Default select example" onChange={(e)=>setSelectedHint(e.target.value)}>
+                        <select class="form-select" aria-label="Default select example">
                         <option disabled selected>select Hint Questions</option>
                         <option value="color">Favourite Color</option>
                         <option value="bike">Favourite bike</option>
@@ -164,7 +161,6 @@ const ViewUserModal = ({ setIsViewUserModalOpen , selectedUser}) => {
                         disabled={selectedHint ? false : true}
                                 type="text"
                                 value={userData.hintAnswer}
-                                onChange={(e) => setUserData({...userData, hintAnswer: e.target.value })}
                             />
                         </div>
                         <div className='col-md-1'></div>

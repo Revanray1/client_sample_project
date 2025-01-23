@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from 'react-router-dom';
 import FileTable from '../FileTable';
 import ClaimTable from '../ClaimTable';
 import { fetchCustomerFiles } from '../../api/fileListApi';
 import { fetchCustomerFileClaimList } from '../../api/claimListApi';
-    import './ViewClaimReconciliation.css';
-
-
+import './ViewClaimReconciliation.css';
+import DatePicker from "react-datepicker";
+import {formatISTDateToYYYYMMDD } from '../../utils/commonFunctions.js';
 
 
 const DateRangeSelector = ({ onCreateReport, onClearFields }) => {
@@ -24,6 +25,14 @@ const DateRangeSelector = ({ onCreateReport, onClearFields }) => {
         setFileName('');
         onClearFields();
     };
+
+    useEffect(() => {
+        let currentDate = new Date()
+        let dateBefore_30 = new Date()
+        dateBefore_30.setDate(currentDate.getDate() - 30)
+        setToDate(formatISTDateToYYYYMMDD(currentDate))
+        setFromDate(formatISTDateToYYYYMMDD(dateBefore_30))
+    }, [])
 
     const handleUploadClaim = async () => {
         try {
@@ -53,17 +62,29 @@ const DateRangeSelector = ({ onCreateReport, onClearFields }) => {
         <div className="date-range-selector" >
             <div className="form-group claim-data-formgroup">
                 <label className='color-black'>From</label>
-                <input type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)} />
+                <DatePicker
+                    className="color-black"
+                    selected={fromDate}
+                    onChange={(date) => setFromDate(date)}
+                    dateFormat="MM-dd-yyyy"
+                    placeholderText='Select From Date'
+                />
             </div>
             <div className="form-group claim-data-formgroup">
                 <label className='color-black'>To</label>
-                <input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)} />
+                <DatePicker
+                    className="color-black"
+                    selected={toDate}
+                    onChange={(date) => setToDate(date)}
+                    dateFormat="MM-dd-yyyy"
+                    placeholderText='Select To Date'
+                />
             </div>
 
             <div className="button-group">
-                <button className="create-report" onClick={handleCreateReport}>Create Report</button>
-                <button className="create-upload" onClick={handleUploadClaim}>Upload Claims</button>
-                <button className="clear-fields" onClick={handleClearFields}>Clear Fields</button>
+                <button className="create-report reconciliation-datepicker-buttons" onClick={handleCreateReport}>Search</button>
+                {/* <button className="create-upload reconciliation-datepicker-buttons" onClick={handleUploadClaim}>Upload Claims</button> */}
+                <button className="clear-fields reconciliation-datepicker-buttons" onClick={handleClearFields}>Clear Fields</button>
             </div>
         </div>
     </>);
@@ -146,7 +167,7 @@ const ViewClaimReconciliation = () => {
         getFiles();
     }, []);
 
-    
+
     const handleViewClaimData = async (fileName) => {
         setClaimLoader(true);
         try {
@@ -177,7 +198,7 @@ const ViewClaimReconciliation = () => {
         try {
             const response = await fetchCustomerFiles();
             const formattedData = response.map(file => ({
-                fileId : file.fileId || '',
+                fileId: file.fileId || '',
                 fileName: file.fileName || '',
                 fileDate: file.fileDate || '',
                 fileSize: file.fileSize || '',
@@ -205,14 +226,14 @@ const ViewClaimReconciliation = () => {
 
                 <h5 className='font-weight-bold'>File List</h5>
 
-                <FileTable fileLoader={fileLoader} files={files} setFiles={setFiles} onStatusChange={handleStatusChange}  handleViewClaimData={handleViewClaimData}/>
+                <FileTable fileLoader={fileLoader} files={files} setFiles={setFiles} onStatusChange={handleStatusChange} handleViewClaimData={handleViewClaimData} />
             </div>
-            { claimData &&
-            <div className="view-claim-reconciliation shadow-sm p-3 mb-5 bg-white rounded">
+            {claimData &&
+                <div className="view-claim-reconciliation shadow-sm p-3 mb-5 bg-white rounded">
 
-                <h5 className='font-weight-bold'>Claim List</h5>
-                <ClaimTable claimData={claimData} onStatusChange={handleStatusChange} claimloader={claimloader} currentFileName={currentFileName} />
-            </div>}
+                    <h5 className='font-weight-bold'>Claim List</h5>
+                    <ClaimTable claimData={claimData} onStatusChange={handleStatusChange} claimloader={claimloader} currentFileName={currentFileName} />
+                </div>}
         </div>
     );
 };

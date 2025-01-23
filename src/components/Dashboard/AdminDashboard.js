@@ -79,7 +79,7 @@ const AdminDashboard = () => {
             {dashboardCount &&
                 <>
                     <h5 className='font-weight-bold'>Welcome To Clearing House - Dashboard</h5>
-                    : <DateRangeSelector reporttoDate={reporttoDate} reportfromDate={reportfromDate} handleCreateReport={handleCreateReport} />
+                     <DateRangeSelector reporttoDate={reporttoDate} reportfromDate={reportfromDate} handleCreateReport={handleCreateReport} />
                     {loader ? <Loader /> :
                         <> <div className="dashboard-header gap-2 mt-4">
                             {dashboardCount.map((data, index) => (<>

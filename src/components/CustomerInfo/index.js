@@ -12,7 +12,6 @@ const UserInfo = () => {
     const getCustomerDetails = async () => {
         try {
             const response = await fetchCustomerDetail();
-            console.log(response)
             setCustomerData(response);
             setLoader(false)
         } catch (err) {

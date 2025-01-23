@@ -5,12 +5,12 @@
     color: #343a40;
 }
 
-.view-claim-reconciliation h2 {
+/* .view-claim-reconciliation h2 {
     font-size: 1.75rem;
     color: #1e3a8a;
     margin-bottom: 20px;
     font-weight: 600;
-}
+} */
 
 .view-claim-reconciliation h3 {
     font-size: 1.5rem;
@@ -34,29 +34,27 @@
     gap: 20px;
 }
     
-.search-criteria .date-range-selector input,
-.search-criteria .date-range-selector button {
+.reconciliation-datepicker-buttons{
     padding: 10px;
     border-radius: 6px;
     border: 1px solid #d1d5db;
     font-size: 0.875rem;
     color: #495057;
-}
+} */
 
-.search-criteria .date-range-selector input:focus,
-.search-criteria .date-range-selector button:focus {
+.reconciliation-datepicker-buttons button:focus {
     outline: none;
     border-color: #1e3a8a;
     box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.2);
-}
+} 
 
-.search-criteria .date-range-selector button {
+.reconciliation-datepicker-buttons{
     background-color: #1e3a8a;
     color: white;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
+} 
 
 .search-criteria .date-range-selector button:hover {
     background-color: #274bdb;
@@ -213,13 +211,13 @@ h2 {
     position: relative;
 }
 
-.filter-input {
+/* .filter-input {
     width: 100%;
     padding: 8px 35px 8px 10px;
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
-}
+} */
 
 .filter-icon {
     position: absolute;

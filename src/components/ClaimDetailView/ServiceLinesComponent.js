@@ -30,8 +30,13 @@ const ServiceLines = ({data,index}) => {
                             </div>
 
                             <div className='text-start'>
-                                <div className="width-max-content">{data?.procedureCode!== "" ? data?.procedureCode : "-"}</div>
+                                <div className="width-max-content">{(data?.procedureCode!== "" &&  data?.procedureCode.split(':')[0]) ? data?.procedureCode.split(':')[0] : "-"}</div>
                                 <div className='claimdetails-value width-max-content'>PROCEDURE CODE</div>
+                            </div>
+ 
+                            <div className='text-start'>
+                                <div className="width-max-content">{(data?.procedureCode!== "" && data?.procedureCode.split(':')[1]) ? data?.procedureCode.split(':')[1] : "-"}</div>
+                                <div className='claimdetails-value width-max-content'>Modifier</div>
                             </div>
 
                             <div className='text-start'>
